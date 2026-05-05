@@ -1,0 +1,50 @@
+{
+  "name": "rubric_judge_refresh_openrouter_high_v1",
+  "description": "Release-local rubric judging with both allow-repeat and online-pool-remove modes.",
+  "outputs_root": "data/canonical_full",
+  "rubrics_subdir": "rubrics",
+  "output_subdir": "criterion_match",
+  "target_cases": 500,
+  "match_modes": [
+    "allow_repeat",
+    "online_pool_remove"
+  ],
+  "models": [
+    {
+      "tag": "deepseek_r1_0528_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "deepseekv32exp_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "gemini25_pro_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "gemini31_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "gemini3_flash_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "gpt54_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "kimi_k2_5_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "mimo_v2_pro_openrouter",
+      "enabled": true
+    },
+    {
+      "tag": "qwen35_397b_a17b_openrouter",
+      "enabled": true
+    }
+  ]
+}

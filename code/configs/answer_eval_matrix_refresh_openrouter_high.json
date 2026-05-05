@@ -1,0 +1,100 @@
+{
+  "name": "answer_eval_refresh_openrouter_high_v1",
+  "description": "Answer-under-rubric evaluation roster for refreshed non-Claude models plus reused Claude data.",
+  "outputs_root": "data/canonical_full",
+  "output_subdir": "answer_eval",
+  "refresh_responses_root": "data/canonical_full/responses",
+  "refresh_rubrics_root": "data/canonical_full/rubrics",
+  "reused_responses_root": "data/canonical_full/responses",
+  "reused_rubrics_root": "data/canonical_full/rubrics",
+  "models": [
+    {
+      "label": "Claude Sonnet 4",
+      "response_tag": "claude_sonnet4",
+      "rubric_tag": "claude_sonnet4_openrouter",
+      "reuse_response": true,
+      "reuse_rubric": true,
+      "enabled": true
+    },
+    {
+      "label": "Claude Opus 4.6",
+      "response_tag": "opus46",
+      "rubric_tag": "opus46_openrouter",
+      "reuse_response": true,
+      "reuse_rubric": true,
+      "enabled": true
+    },
+    {
+      "label": "DeepSeek R1 0528",
+      "response_tag": "deepseek_r1_0528_openrouter",
+      "rubric_tag": "deepseek_r1_0528_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "DeepSeek V3.2 Exp",
+      "response_tag": "deepseekv32exp_openrouter",
+      "rubric_tag": "deepseekv32exp_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "Gemini 2.5 Pro",
+      "response_tag": "gemini25_pro_openrouter",
+      "rubric_tag": "gemini25_pro_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "Gemini 3.1 Pro",
+      "response_tag": "gemini31_openrouter",
+      "rubric_tag": "gemini31_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "Gemini 3 Flash",
+      "response_tag": "gemini3_flash_openrouter",
+      "rubric_tag": "gemini3_flash_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "GPT-5.4",
+      "response_tag": "gpt54_openrouter",
+      "rubric_tag": "gpt54_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "Kimi K2.5",
+      "response_tag": "kimi_k2_5_openrouter",
+      "rubric_tag": "kimi_k2_5_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "MiMo V2 Pro",
+      "response_tag": "mimo_v2_pro_openrouter",
+      "rubric_tag": "mimo_v2_pro_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    },
+    {
+      "label": "Qwen 3.5 397B A17B",
+      "response_tag": "qwen35_397b_a17b_openrouter",
+      "rubric_tag": "qwen35_397b_a17b_openrouter",
+      "reuse_response": false,
+      "reuse_rubric": false,
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "release_root": "release_staging",
+  "generated_at": "2026-05-03 15:49:43",
+  "inventory_convention": "File totals exclude manifests/sha256.json.",
+  "subtree_totals": {
+    "code": {
+      "files_excluding_sha256_manifest": 40,
+      "bytes": 446839
+    },
+    "docs": {
+      "files_excluding_sha256_manifest": 4,
+      "bytes": 10583
+    },
+    "data/canonical_full": {
+      "files_excluding_sha256_manifest": 77389,
+      "bytes": 5050346131
+    },
+    "data/paper_release": {
+      "files_excluding_sha256_manifest": 303,
+      "bytes": 5048799229
+    },
+    "manifests_excluding_sha256": {
+      "files_excluding_sha256_manifest": 9,
+      "bytes": 32212
+    }
+  },
+  "paper_release_sections": {
+    "appendix_d1": {
+      "files_excluding_sha256_manifest": 157,
+      "bytes": 77679221
+    },
+    "embeddings": {
+      "files_excluding_sha256_manifest": 1,
+      "bytes": 18933006
+    },
+    "finding1": {
+      "files_excluding_sha256_manifest": 2,
+      "bytes": 4231814
+    },
+    "finding2": {
+      "files_excluding_sha256_manifest": 69,
+      "bytes": 1053214055
+    },
+    "finding3": {
+      "files_excluding_sha256_manifest": 52,
+      "bytes": 3821596497
+    },
+    "inputs": {
+      "files_excluding_sha256_manifest": 3,
+      "bytes": 4112694
+    },
+    "rubrics": {
+      "files_excluding_sha256_manifest": 19,
+      "bytes": 69031942
+    }
+  },
+  "canonical_full_sections": {
+    "answer_eval": {
+      "files_excluding_sha256_manifest": 177,
+      "bytes": 3823056491
+    },
+    "common100": {
+      "files_excluding_sha256_manifest": 22,
+      "bytes": 3025241
+    },
+    "criterion_match": {
+      "files_excluding_sha256_manifest": 77154,
+      "bytes": 1047148579
+    },
+    "responses": {
+      "files_excluding_sha256_manifest": 14,
+      "bytes": 100994326
+    },
+    "rubrics": {
+      "files_excluding_sha256_manifest": 22,
+      "bytes": 76121494
+    }
+  },
+  "public_entrypoints": {
+    "readme": "docs/README.md",
+    "reproduce": "docs/REPRODUCE.md",
+    "data_map": "docs/DATA_MAP.md",
+    "assets_and_licenses": "docs/ASSETS_AND_LICENSES.md",
+    "stage_wrappers": [
+      "code/bin/01_build_ai_rubrics",
+      "code/bin/02_build_model_responses",
+      "code/bin/03_run_human_model_scoring",
+      "code/bin/04_run_finding1_pair_pipeline",
+      "code/bin/05_run_finding2_generality_pipeline",
+      "code/bin/06_run_finding3_coverage_pipeline",
+      "code/bin/07_build_release_summaries"
+    ],
+    "validation_scripts": [
+      "code/validation/validate_release_closure.py",
+      "code/validation/validate_release_metrics.py"
+    ]
+  },
+  "key_artifacts": [
+    {
+      "path": "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json",
+      "kind": "staged_derived_artifact",
+      "headline_counts": {
+        "models": 11,
+        "dilemmas": 100,
+        "pairs": 5181
+      }
+    },
+    {
+      "path": "data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl",
+      "kind": "staged_derived_artifact",
+      "headline_counts": {
+        "rows": 500
+      }
+    },
+    {
+      "path": "data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_label_summary.complete_all.json",
+      "kind": "staged_derived_summary",
+      "headline_counts": {
+        "rows": 8290,
+        "human_only_rows": 2542,
+        "model_only_rows": 5748
+      }
+    }
+  ],
+  "rebuild_limitations": [
+    "The exact upstream pair-consolidation builder for Finding 1 is not vendored in the minimal code closure.",
+    "The exact upstream cascade-consolidation builder for the final Finding 2 rewritten rubric is not vendored in the minimal code closure.",
+    "Release-local validation still recomputes the paper-facing Finding 1, Finding 2, and Finding 3 headline metrics from the staged release data."
+  ],
+  "validation_reports": {
+    "closure_report": "manifests/validation/closure_report.json",
+    "metrics_report": "manifests/validation/metrics_report.json",
+    "expected_metrics": "manifests/expected_metrics.json",
+    "closure_status": "ok",
+    "metrics_status": "ok"
+  },
+  "headline_metrics_from_release_data": {
+    "finding1_pairs": 5181,
+    "finding2_changed": 5043,
+    "finding2_mean_uplift_13": 18.37,
+    "finding3_global_unique_human_only": 2227,
+    "finding3_global_unique_model_only": 20982
+  }
+}

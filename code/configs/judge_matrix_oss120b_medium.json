@@ -1,0 +1,18 @@
+{
+  "name": "oss120b_reasoning_medium_single_judge",
+  "description": "Single OpenRouter OSS120B-medium judge for the clean refresh line.",
+  "judges": [
+    {
+      "tag": "judge_openrouter_openai-gpt-oss-120b_reasonmedium",
+      "api_provider": "openrouter",
+      "model": "openai/gpt-oss-120b",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "medium",
+      "max_workers": 6,
+      "max_tokens": 10500,
+      "max_retries": 3,
+      "request_timeout": 180,
+      "enabled": true
+    }
+  ]
+}

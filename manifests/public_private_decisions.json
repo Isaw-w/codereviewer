@@ -1,0 +1,56 @@
+{
+  "public_release": [
+    {
+      "group": "code",
+      "decision": "public",
+      "rationale": "Needed to rerun generation, judging, aggregation, and validation from inside the release package."
+    },
+    {
+      "group": "data/paper_release",
+      "decision": "public",
+      "rationale": "Contains the paper-facing artifacts, staged inputs, and appendix-support outputs cited in the paper."
+    },
+    {
+      "group": "data/canonical_full",
+      "decision": "public",
+      "rationale": "Full canonical rerun corpus requested as part of the anonymous release package."
+    },
+    {
+      "group": "docs",
+      "decision": "public",
+      "rationale": "Needed for anonymous entrypoint, reproduction notes, data map, and licensing notes."
+    },
+    {
+      "group": "manifests",
+      "decision": "public",
+      "rationale": "Needed for hashes, counts, provenance, and machine-checkable validation."
+    }
+  ],
+  "not_in_release": [
+    {
+      "path": "handover.md",
+      "decision": "private",
+      "rationale": "Internal coordination log."
+    },
+    {
+      "path": "thoughts/",
+      "decision": "private",
+      "rationale": "Internal writing workspace."
+    },
+    {
+      "path": "notes/",
+      "decision": "private",
+      "rationale": "Scratch notes and coordination material."
+    },
+    {
+      "path": "<source-repo>/outputs/archive/",
+      "decision": "private",
+      "rationale": "Historical runs outside the release package."
+    },
+    {
+      "path": "exploratory HTML viewers and temporary notebooks",
+      "decision": "private",
+      "rationale": "Presentation-only exploratory artifacts not needed for reproduction."
+    }
+  ]
+}

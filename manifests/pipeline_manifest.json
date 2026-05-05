@@ -1,0 +1,160 @@
+{
+  "stages": [
+    {
+      "stage_id": "01_base_inputs",
+      "title": "Base inputs",
+      "wrapper": null,
+      "primary_inputs": [
+        "data/paper_release/inputs/morebench_test.jsonl",
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl",
+        "code/prompts/"
+      ],
+      "primary_scripts": [],
+      "primary_outputs": [
+        "data/paper_release/inputs/",
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl"
+      ],
+      "acceptance_artifacts": [
+        "manifests/release_inventory.json"
+      ]
+    },
+    {
+      "stage_id": "02_generation",
+      "title": "Generation",
+      "wrapper": "code/bin/01_build_ai_rubrics",
+      "primary_inputs": [
+        "data/paper_release/inputs/morebench_test.jsonl",
+        "code/configs/model_matrix_refresh_openrouter_high.json",
+        "code/configs/response_matrix_refresh_openrouter_high.json"
+      ],
+      "primary_scripts": [
+        "code/run_rubric_matrix_incremental.py",
+        "code/run_response_matrix_incremental.py",
+        "code/generate_ai_rubrics_exp2.py",
+        "code/run_inferences_on_dilemmas.py"
+      ],
+      "primary_outputs": [
+        "data/canonical_full/rubrics/",
+        "data/canonical_full/responses/"
+      ],
+      "acceptance_artifacts": [
+        "manifests/counts.json"
+      ]
+    },
+    {
+      "stage_id": "03_scoring",
+      "title": "Human/model rubric scoring",
+      "wrapper": "code/bin/03_run_human_model_scoring",
+      "primary_inputs": [
+        "data/canonical_full/rubrics/",
+        "data/canonical_full/responses/"
+      ],
+      "primary_scripts": [
+        "code/run_answer_matrix_incremental.py",
+        "code/run_best_judge_on_responses.py",
+        "code/calculate_morebench.py"
+      ],
+      "primary_outputs": [
+        "data/canonical_full/answer_eval/"
+      ],
+      "acceptance_artifacts": [
+        "manifests/expected_metrics.json"
+      ]
+    },
+    {
+      "stage_id": "04_finding1_pairs",
+      "title": "Finding 1 pair artifact",
+      "wrapper": "code/bin/04_run_finding1_pair_pipeline",
+      "primary_inputs": [
+        "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json"
+      ],
+      "primary_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json",
+        "manifests/validation/metrics_report.json"
+      ],
+      "notes": [
+        "The exact upstream pair-consolidation script is not part of the vendored minimal closure.",
+        "The shipped pair artifact is treated as authoritative and is revalidated from release-local data."
+      ],
+      "acceptance_artifacts": [
+        "manifests/paper_release_provenance.json"
+      ]
+    },
+    {
+      "stage_id": "05_finding2_generality",
+      "title": "Finding 2 generality and rewrite artifacts",
+      "wrapper": "code/bin/05_run_finding2_generality_pipeline",
+      "primary_inputs": [
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl",
+        "data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl",
+        "data/canonical_full/answer_eval/"
+      ],
+      "primary_scripts": [
+        "code/run_generality_check.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/rubrics/rewrite/",
+        "data/paper_release/finding2/cascade_rescoring/"
+      ],
+      "notes": [
+        "The first-pass generality judge can be rerun with the vendored script.",
+        "The exact upstream cascade-consolidation step that produced the shipped final rewritten rubric is not vendored in this minimal closure."
+      ],
+      "acceptance_artifacts": [
+        "manifests/paper_release_provenance.json"
+      ]
+    },
+    {
+      "stage_id": "06_finding3_coverage",
+      "title": "Finding 3 coverage and direct check",
+      "wrapper": "code/bin/06_run_finding3_coverage_pipeline",
+      "primary_inputs": [
+        "data/canonical_full/rubrics/",
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl"
+      ],
+      "primary_scripts": [
+        "code/build_human_model_unique_criteria.py",
+        "code/build_global_unique_criteria.py",
+        "code/build_pooled_unique_criteria.py",
+        "code/build_top100_residuals.py",
+        "code/run_find_only_dual_method.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/finding3/coverage/",
+        "data/paper_release/finding3/direct_check/",
+        "data/paper_release/finding3/normative_tendencies/"
+      ],
+      "acceptance_artifacts": [
+        "manifests/expected_metrics.json"
+      ]
+    },
+    {
+      "stage_id": "07_validation",
+      "title": "Release validation",
+      "wrapper": "code/bin/07_build_release_summaries",
+      "primary_inputs": [
+        "data/paper_release/",
+        "data/canonical_full/",
+        "code/validation/validate_release_closure.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_scripts": [
+        "code/validation/validate_release_closure.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "manifests/expected_metrics.json",
+        "manifests/validation/closure_report.json",
+        "manifests/validation/metrics_report.json"
+      ],
+      "acceptance_artifacts": [
+        "manifests/validation/closure_report.json",
+        "manifests/validation/metrics_report.json"
+      ]
+    }
+  ]
+}

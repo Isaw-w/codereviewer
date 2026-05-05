@@ -1,0 +1,170 @@
+{
+  "artifacts": [
+    {
+      "path": "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json",
+      "paper_refs": [
+        "Finding 1",
+        "Table 1",
+        "Finding 1 appendix numbers"
+      ],
+      "artifact_kind": "staged_derived_artifact",
+      "release_local_inputs": [
+        "data/canonical_full/criterion_match/",
+        "data/canonical_full/answer_eval/"
+      ],
+      "release_local_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "not vendored; authoritative staged pair artifact shipped in this release package",
+      "expected_counts": {
+        "models": 11,
+        "dilemmas": 100,
+        "pairs": 5181
+      },
+      "validation_command": "python3 code/validation/validate_release_metrics.py --section finding1"
+    },
+    {
+      "path": "data/paper_release/rubrics/original/human_rubric_500cases.jsonl",
+      "paper_refs": [
+        "Finding 2 input rubric",
+        "Finding 3 human-side rubric input"
+      ],
+      "artifact_kind": "copied_release_input",
+      "release_local_inputs": [
+        "data/canonical_full/rubrics/"
+      ],
+      "release_local_scripts": [],
+      "generation_command": "copied from the canonical staged rubric tree",
+      "expected_counts": {
+        "rows": 500
+      }
+    },
+    {
+      "path": "data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl",
+      "paper_refs": [
+        "Finding 2 changed/unchanged counts"
+      ],
+      "artifact_kind": "staged_derived_artifact",
+      "release_local_inputs": [
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl"
+      ],
+      "release_local_scripts": [
+        "code/run_generality_check.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "first-pass generality results plus cross-model review were consolidated upstream; final audit artifact is shipped here",
+      "expected_counts": {
+        "rows": 11450,
+        "changed": 5043,
+        "unchanged": 6407
+      },
+      "validation_command": "python3 code/validation/validate_release_metrics.py --section finding2"
+    },
+    {
+      "path": "data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl",
+      "paper_refs": [
+        "Finding 2 rewritten rubric"
+      ],
+      "artifact_kind": "staged_derived_artifact",
+      "release_local_inputs": [
+        "data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl"
+      ],
+      "release_local_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "exact upstream cascade-consolidation builder not vendored; final rewritten rubric is shipped as the authoritative staged artifact",
+      "expected_counts": {
+        "rows": 500
+      }
+    },
+    {
+      "path": "data/paper_release/finding2/cascade_rescoring/",
+      "paper_refs": [
+        "Finding 2 score lift table",
+        "Finding 2 appendix support"
+      ],
+      "artifact_kind": "staged_judgement_tree",
+      "release_local_inputs": [
+        "data/canonical_full/answer_eval/",
+        "data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl"
+      ],
+      "release_local_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "full rescoring trees shipped in the release package; validation recomputes the reported means from the staged judgements"
+    },
+    {
+      "path": "data/paper_release/finding3/coverage/human_model_unique_t70_all/summary.json",
+      "paper_refs": [
+        "Finding 3 per-model coverage summary"
+      ],
+      "artifact_kind": "rebuildable_summary",
+      "release_local_inputs": [
+        "data/canonical_full/rubrics/"
+      ],
+      "release_local_scripts": [
+        "code/build_human_model_unique_criteria.py"
+      ],
+      "generation_command": "python3 code/build_human_model_unique_criteria.py -ak $LAB_OPENROUTER_KEY --output_dir data/paper_release/finding3/coverage/human_model_unique_t70_all"
+    },
+    {
+      "path": "data/paper_release/finding3/coverage/global_unique_t70/summary.json",
+      "paper_refs": [
+        "Finding 3 pooled global counts"
+      ],
+      "artifact_kind": "rebuildable_summary",
+      "release_local_inputs": [
+        "data/canonical_full/rubrics/",
+        "data/paper_release/finding3/coverage/human_model_unique_t70_all"
+      ],
+      "release_local_scripts": [
+        "code/build_global_unique_criteria.py"
+      ],
+      "generation_command": "python3 code/build_global_unique_criteria.py -ak $LAB_OPENROUTER_KEY --output_dir data/paper_release/finding3/coverage/global_unique_t70 --embed_cache data/paper_release/finding3/coverage/human_model_unique_t70_all"
+    },
+    {
+      "path": "data/paper_release/finding3/direct_check/residuals_top100.jsonl",
+      "paper_refs": [
+        "Finding 3 selected top-100 case slice"
+      ],
+      "artifact_kind": "rebuildable_intermediate",
+      "release_local_inputs": [
+        "data/paper_release/finding3/coverage/global_unique_t70/global_unique_criteria.jsonl",
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl"
+      ],
+      "release_local_scripts": [
+        "code/build_top100_residuals.py"
+      ],
+      "generation_command": "python3 code/build_top100_residuals.py"
+    },
+    {
+      "path": "data/paper_release/finding3/direct_check/top100_v2_high_pooled_summary.json",
+      "paper_refs": [
+        "Finding 3 main direct-check summary"
+      ],
+      "artifact_kind": "staged_derived_summary",
+      "release_local_inputs": [
+        "data/paper_release/finding3/direct_check/residuals_top100.jsonl",
+        "data/paper_release/finding3/direct_check/raw_llm/"
+      ],
+      "release_local_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "staged summary shipped in the release package; validation recomputes the headline counts from the staged summary and raw direct-check outputs"
+    },
+    {
+      "path": "data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_label_summary.complete_all.json",
+      "paper_refs": [
+        "Finding 3 normative-tendencies figure"
+      ],
+      "artifact_kind": "staged_derived_summary",
+      "release_local_inputs": [
+        "data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_gpt54mini_high_labels.complete_all.jsonl"
+      ],
+      "release_local_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "generation_command": "same-branch normative-label summary shipped as the authoritative staged artifact for the paper figure"
+    }
+  ]
+}

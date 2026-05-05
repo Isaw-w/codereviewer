@@ -1,0 +1,82 @@
+{
+  "name": "rubric_refresh_openrouter_high_v1",
+  "description": "OpenRouter-only rubric refresh for non-Claude models with reasoning_effort=high.",
+  "input_file": "data/paper_release/inputs/morebench_test.jsonl",
+  "outputs_root": "data/canonical_full",
+  "outputs_subdir": "rubrics",
+  "target_cases": 500,
+  "models": [
+    {
+      "tag": "deepseek_r1_0528_openrouter",
+      "api_provider": "openrouter",
+      "model": "deepseek/deepseek-r1-0528",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "deepseekv32exp_openrouter",
+      "api_provider": "openrouter",
+      "model": "deepseek/deepseek-v3.2-exp",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "gemini25_pro_openrouter",
+      "api_provider": "openrouter",
+      "model": "google/gemini-2.5-pro",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "gemini31_openrouter",
+      "api_provider": "openrouter",
+      "model": "google/gemini-3.1-pro-preview",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "gemini3_flash_openrouter",
+      "api_provider": "openrouter",
+      "model": "google/gemini-3-flash-preview",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "gpt54_openrouter",
+      "api_provider": "openrouter",
+      "model": "openai/gpt-5.4",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "kimi_k2_5_openrouter",
+      "api_provider": "openrouter",
+      "model": "moonshotai/kimi-k2.5:nitro",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "mimo_v2_pro_openrouter",
+      "api_provider": "openrouter",
+      "model": "xiaomi/mimo-v2-pro",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    },
+    {
+      "tag": "qwen35_397b_a17b_openrouter",
+      "api_provider": "openrouter",
+      "model": "qwen/qwen3.5-397b-a17b",
+      "api_key_env": "LAB_OPENROUTER_KEY",
+      "reasoning_effort": "high",
+      "enabled": true
+    }
+  ]
+}

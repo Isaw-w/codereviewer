@@ -1,0 +1,51 @@
+# Data map
+
+This file maps the main release artifacts to the findings, table numbers, figure numbers, and appendix support they feed.
+
+## Finding 1
+
+- `data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json`
+  - Main matched-pair artifact used for the fulfillment-gap analysis.
+  - Used for the headline `5,181` matched pairs and the cosine-binned gap table.
+- `data/paper_release/finding1/criterion_pairs/all_bidir_pairs_data.json`
+  - Alias copy of the same staged pair artifact used in older internal analyses and appendix breakdowns.
+
+## Finding 2
+
+- `data/paper_release/rubrics/original/human_rubric_500cases.jsonl`
+  - Original human rubric.
+- `data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl`
+  - Final per-criterion original vs rewritten text audit.
+  - Used for the `11,450` total criteria and `5,043` changed criteria counts.
+- `data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl`
+  - Final rewritten human rubric used for the cascade rescoring line.
+- `data/paper_release/finding2/cascade_rescoring/`
+  - Full staged rescoring trees and logs for the rewritten-rubric score comparison.
+- `data/paper_release/appendix_d1/rubric_d1_check/`
+  - Cross-judge generality-validation outputs reported in the appendix.
+
+## Finding 3
+
+- `data/paper_release/finding3/coverage/human_model_unique_t70_all/summary.json`
+  - Per-model human-only / model-only / shared coverage summaries.
+- `data/paper_release/finding3/coverage/global_unique_t70/summary.json`
+  - Pooled 500-case global concept summary.
+  - Used for the `2,227` human-only and `20,982` model-only pooled counts.
+- `data/paper_release/finding3/direct_check/residuals_top100.jsonl`
+  - Selected 100-case residual input set.
+  - Contains `1,116` selected concepts.
+- `data/paper_release/finding3/direct_check/top100_v2_high_pooled_summary.json`
+  - Main pooled direct-check summary.
+  - Used for `100` selected cases, `1,116` selected concepts, `50.1%` coverage, `1,969` confirmed human-only instances, and `6,870` vs `3,291` raw one-sided counts.
+- `data/paper_release/finding3/direct_check/top100_v2_high_per_model_summary.json`
+  - Per-model direct-check summary.
+- `data/paper_release/finding3/direct_check/raw_llm/`
+  - Raw per-model GPT-5.4 direct-check outputs.
+- `data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_input_summary.json`
+  - Same-branch intersection size summary (`8,290` rows total; `2,542` human-only; `5,748` model-only).
+- `data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_label_summary.complete_all.json`
+  - Same-branch primary-label summary used for the normative-tendencies figure.
+- `data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_level2_summary.complete_all.json`
+  - Same-branch level-2 subtype breakdown.
+- `data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_gpt54mini_high_labels.complete_all.jsonl`
+  - Per-row label outputs behind the normative-tendencies summary.

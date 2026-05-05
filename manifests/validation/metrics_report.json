@@ -1,0 +1,192 @@
+{
+  "section": "all",
+  "status": "ok",
+  "differences": [],
+  "actual": {
+    "finding1": {
+      "models": 11,
+      "dilemmas": 100,
+      "pairs": 5181,
+      "human_yes_pct": 81.39,
+      "model_yes_pct": 89.4,
+      "gap_pp": 8.01,
+      "bins": [
+        {
+          "bin": ">=0.85",
+          "n": 275,
+          "human_yes_pct": 89.1,
+          "model_yes_pct": 93.1,
+          "gap_pp": 4.0,
+          "h_no_m_yes": 18,
+          "h_yes_m_no": 7
+        },
+        {
+          "bin": "0.80-0.85",
+          "n": 792,
+          "human_yes_pct": 84.2,
+          "model_yes_pct": 90.5,
+          "gap_pp": 6.3,
+          "h_no_m_yes": 84,
+          "h_yes_m_no": 34
+        },
+        {
+          "bin": "0.70-0.80",
+          "n": 2391,
+          "human_yes_pct": 80.5,
+          "model_yes_pct": 88.4,
+          "gap_pp": 7.9,
+          "h_no_m_yes": 302,
+          "h_yes_m_no": 114
+        },
+        {
+          "bin": "0.60-0.70",
+          "n": 1400,
+          "human_yes_pct": 80.4,
+          "model_yes_pct": 89.5,
+          "gap_pp": 9.1,
+          "h_no_m_yes": 195,
+          "h_yes_m_no": 68
+        },
+        {
+          "bin": "<0.60",
+          "n": 323,
+          "human_yes_pct": 78.6,
+          "model_yes_pct": 90.7,
+          "gap_pp": 12.1,
+          "h_no_m_yes": 52,
+          "h_yes_m_no": 13
+        }
+      ]
+    },
+    "finding2": {
+      "criteria_total": 11450,
+      "changed": 5043,
+      "unchanged": 6407,
+      "changed_positive_weight": 4581,
+      "changed_negative_weight": 462,
+      "mean_original_human_score_13": 70.89,
+      "mean_cascade_rewritten_score_13": 89.27,
+      "mean_uplift_13": 18.37,
+      "scored_models": {
+        "claude_sonnet4": {
+          "original_human_score": 63.4,
+          "cascade_rewritten_score": 84.22,
+          "uplift": 20.82
+        },
+        "opus46": {
+          "original_human_score": 73.0,
+          "cascade_rewritten_score": 90.22,
+          "uplift": 17.22
+        },
+        "deepseek_r1_0528_openrouter": {
+          "original_human_score": 72.23,
+          "cascade_rewritten_score": 90.17,
+          "uplift": 17.94
+        },
+        "deepseekv32exp_openrouter": {
+          "original_human_score": 69.11,
+          "cascade_rewritten_score": 88.78,
+          "uplift": 19.67
+        },
+        "gemini25_pro_openrouter": {
+          "original_human_score": 75.06,
+          "cascade_rewritten_score": 91.84,
+          "uplift": 16.78
+        },
+        "gemini31_openrouter": {
+          "original_human_score": 71.59,
+          "cascade_rewritten_score": 88.85,
+          "uplift": 17.26
+        },
+        "gemini3_flash_openrouter": {
+          "original_human_score": 68.58,
+          "cascade_rewritten_score": 87.5,
+          "uplift": 18.92
+        },
+        "gpt54_openrouter": {
+          "original_human_score": 70.24,
+          "cascade_rewritten_score": 89.88,
+          "uplift": 19.64
+        },
+        "kimi_k2_5_openrouter": {
+          "original_human_score": 74.04,
+          "cascade_rewritten_score": 91.04,
+          "uplift": 17.0
+        },
+        "mimo_v2_pro_openrouter": {
+          "original_human_score": 70.91,
+          "cascade_rewritten_score": 89.87,
+          "uplift": 18.96
+        },
+        "qwen35_397b_a17b_openrouter": {
+          "original_human_score": 71.37,
+          "cascade_rewritten_score": 89.57,
+          "uplift": 18.2
+        },
+        "gemma3_4b_openrouter": {
+          "original_human_score": 69.68,
+          "cascade_rewritten_score": 89.01,
+          "uplift": 19.33
+        },
+        "qwen35_9b_openrouter": {
+          "original_human_score": 72.42,
+          "cascade_rewritten_score": 89.54,
+          "uplift": 17.12
+        },
+        "gpt_oss_120b_openrouter": {
+          "original_human_score": 70.2,
+          "cascade_rewritten_score": 84.51,
+          "uplift": 14.31
+        }
+      }
+    },
+    "finding3": {
+      "global_unique": {
+        "human_only": 2227,
+        "model_only": 20982,
+        "human_covered_by_model": 2560,
+        "model_overlaps_human": 4391
+      },
+      "direct_check": {
+        "selected_cases": 100,
+        "selected_concepts": 1116,
+        "coverage_pct": 50.1,
+        "pooled_human_only_total": 2227,
+        "confirmed_human_only": 1969,
+        "concept_model_evaluations": 12276,
+        "confirmation_rate_pct": 16.0,
+        "human_only_instances": 3291,
+        "model_only_instances": 6870
+      },
+      "samebranch_intersection": {
+        "rows": 8290,
+        "human_only_rows": 2542,
+        "model_only_rows": 5748,
+        "pair_count": 11
+      },
+      "pairwise_primary_means": {
+        "consequences, harm, or benefit": {
+          "human_mean": 35.9,
+          "model_mean": 15.2
+        },
+        "practical wisdom or framing": {
+          "human_mean": 21.4,
+          "model_mean": 45.3
+        },
+        "epistemic humility": {
+          "human_mean": 11.3,
+          "model_mean": 14.0
+        },
+        "duties, rights, or autonomy": {
+          "human_mean": 9.4,
+          "model_mean": 6.8
+        },
+        "role obligations or boundaries": {
+          "human_mean": 6.9,
+          "model_mean": 3.0
+        }
+      }
+    }
+  },
+  "expected_path": "manifests/expected_metrics.json"
+}

@@ -1,0 +1,25 @@
+# Local Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+
+# OS / editor cruft
+.DS_Store
+*.swp
+*.swo
+
+# Local virtualenvs
+.venv/
+venv/
+env/
+
+# Data: shipped via the companion Hugging Face dataset, not via GitHub
+data/
+
+# Local credentials and env files
+.env
+.env.*
+
+# Stray backups
+*.bak
+*.bak_*

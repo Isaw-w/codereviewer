@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+CODE_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+RELEASE_ROOT=$(cd "$CODE_DIR/.." && pwd)
+WITH_DIRECT_CHECK=0
+if [[ "${1:-}" == "--with-direct-check" ]]; then
+  WITH_DIRECT_CHECK=1
+  shift
+fi
+if [[ "$#" -gt 0 ]]; then
+  echo "This wrapper does not forward arbitrary arguments. Call the underlying Python scripts directly for custom runs." >&2
+  exit 2
+fi
+: "${LAB_OPENROUTER_KEY:?LAB_OPENROUTER_KEY must be set}"
+python3 "$CODE_DIR/build_human_model_unique_criteria.py" \
+  -ak "$LAB_OPENROUTER_KEY" \
+  --output_dir "$RELEASE_ROOT/data/paper_release/finding3/coverage/human_model_unique_t70_all"
+python3 "$CODE_DIR/build_global_unique_criteria.py" \
+  -ak "$LAB_OPENROUTER_KEY" \
+  --output_dir "$RELEASE_ROOT/data/paper_release/finding3/coverage/global_unique_t70" \
+  --embed_cache "$RELEASE_ROOT/data/paper_release/finding3/coverage/human_model_unique_t70_all"
+python3 "$CODE_DIR/build_pooled_unique_criteria.py" \
+  -ak "$LAB_OPENROUTER_KEY" \
+  --output_dir "$RELEASE_ROOT/data/paper_release/finding3/coverage/pooled_unique_t70" \
+  --embed_cache "$RELEASE_ROOT/data/paper_release/finding3/coverage/human_model_unique_t70_all"
+python3 "$CODE_DIR/build_top100_residuals.py"
+if [[ "$WITH_DIRECT_CHECK" == "1" ]]; then
+  python3 "$CODE_DIR/run_find_only_dual_method.py" --ak "$LAB_OPENROUTER_KEY"
+fi

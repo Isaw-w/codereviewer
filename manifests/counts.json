@@ -1,0 +1,103 @@
+{
+  "generated_at": "2026-05-03 15:49:43",
+  "counting_convention": "All file totals exclude manifests/sha256.json, which cannot include a hash of itself.",
+  "subtree_totals": {
+    "code": {
+      "files_excluding_sha256_manifest": 40,
+      "bytes": 446839
+    },
+    "docs": {
+      "files_excluding_sha256_manifest": 4,
+      "bytes": 10583
+    },
+    "data/canonical_full": {
+      "files_excluding_sha256_manifest": 77389,
+      "bytes": 5050346131
+    },
+    "data/paper_release": {
+      "files_excluding_sha256_manifest": 303,
+      "bytes": 5048799229
+    },
+    "manifests_excluding_sha256": {
+      "files_excluding_sha256_manifest": 9,
+      "bytes": 32212
+    }
+  },
+  "top_level_breakdown": {
+    "canonical_full": {
+      "answer_eval": {
+        "files_excluding_sha256_manifest": 177,
+        "bytes": 3823056491
+      },
+      "common100": {
+        "files_excluding_sha256_manifest": 22,
+        "bytes": 3025241
+      },
+      "criterion_match": {
+        "files_excluding_sha256_manifest": 77154,
+        "bytes": 1047148579
+      },
+      "responses": {
+        "files_excluding_sha256_manifest": 14,
+        "bytes": 100994326
+      },
+      "rubrics": {
+        "files_excluding_sha256_manifest": 22,
+        "bytes": 76121494
+      }
+    },
+    "paper_release": {
+      "appendix_d1": {
+        "files_excluding_sha256_manifest": 157,
+        "bytes": 77679221
+      },
+      "embeddings": {
+        "files_excluding_sha256_manifest": 1,
+        "bytes": 18933006
+      },
+      "finding1": {
+        "files_excluding_sha256_manifest": 2,
+        "bytes": 4231814
+      },
+      "finding2": {
+        "files_excluding_sha256_manifest": 69,
+        "bytes": 1053214055
+      },
+      "finding3": {
+        "files_excluding_sha256_manifest": 52,
+        "bytes": 3821596497
+      },
+      "inputs": {
+        "files_excluding_sha256_manifest": 3,
+        "bytes": 4112694
+      },
+      "rubrics": {
+        "files_excluding_sha256_manifest": 19,
+        "bytes": 69031942
+      }
+    }
+  },
+  "key_record_counts": {
+    "inputs.morebench_test_rows": 500,
+    "rubrics.human_rows": 500,
+    "rubrics.human_criteria_total": 11450,
+    "rubrics.ai_rubric_files": 14,
+    "finding1.models": 11,
+    "finding1.dilemmas": 100,
+    "finding1.pairs": 5181,
+    "finding2.rewrite_audit_rows": 11450,
+    "finding2.changed_rows": 5043,
+    "finding2.unchanged_rows": 6407,
+    "finding3.global_unique_human_only": 2227,
+    "finding3.global_unique_model_only": 20982,
+    "finding3.direct_check_selected_cases": 100,
+    "finding3.direct_check_selected_concepts": 1116,
+    "finding3.samebranch_rows": 8290,
+    "finding3.samebranch_human_only_rows": 2542,
+    "finding3.samebranch_model_only_rows": 5748
+  },
+  "validation_status": {
+    "closure_report_status": "ok",
+    "metrics_report_status": "ok"
+  }
+}
