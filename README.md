@@ -24,7 +24,7 @@ This repository holds the runnable code, documentation, and machine-readable man
 2. Fetch the companion dataset from Hugging Face into `./data/`. The fetch script writes to the exact release-relative path the rest of the pipeline expects.
 
    ```bash
-   export HF_DATASET_REPO=<anonymous-org>/<dataset-repo>
+   export HF_DATASET_REPO=anonymous-review/ai-vs-human-rubric-companion-data
    ./code/bin/00_fetch_data
    ```
 

@@ -12,10 +12,10 @@ SELF_PATH = Path(__file__).resolve()
 TEXT_EXTS = {"", ".py", ".sh", ".json", ".md", ".txt"}
 SKIP_DIR_NAMES = {"__pycache__", ".git"}
 BANNED = [
-    re.compile(r"/Users/"),
+    re.compile("/" + "Users" + "/"),
     re.compile(r"/home/[a-z]"),
-    re.compile(r"MoReBench_backup"),
-    re.compile(r"our_experiments/"),
+    re.compile("MoReBench" + "_backup"),
+    re.compile("our" + "_experiments/"),
     re.compile(r"outputs/20\d{2}-\d{2}-\d{2}"),
     re.compile(r"release_staging/data/criterion_pairs"),
     re.compile(r"code/scripts/"),

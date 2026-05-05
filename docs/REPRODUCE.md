@@ -12,7 +12,7 @@ The code repository does not ship the data; the companion dataset is on Hugging 
 ```bash
 pip install -r code/requirements.txt
 pip install -U huggingface_hub
-export HF_DATASET_REPO=<anonymous-org>/<dataset-repo>
+export HF_DATASET_REPO=anonymous-review/ai-vs-human-rubric-companion-data
 ./code/bin/00_fetch_data
 ```
 
