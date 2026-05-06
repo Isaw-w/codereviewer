@@ -1,49 +1,49 @@
 {
   "release_root": "release_staging",
-  "generated_at": "2026-05-03 15:49:43",
+  "generated_at": "2026-05-06 21:40:16",
   "inventory_convention": "File totals exclude manifests/sha256.json.",
   "subtree_totals": {
     "code": {
-      "files_excluding_sha256_manifest": 40,
-      "bytes": 446839
+      "files_excluding_sha256_manifest": 42,
+      "bytes": 437134
     },
     "docs": {
       "files_excluding_sha256_manifest": 4,
-      "bytes": 10583
+      "bytes": 14057
     },
     "data/canonical_full": {
-      "files_excluding_sha256_manifest": 77389,
-      "bytes": 5050346131
+      "files_excluding_sha256_manifest": 77375,
+      "bytes": 4296541434
     },
     "data/paper_release": {
-      "files_excluding_sha256_manifest": 303,
-      "bytes": 5048799229
+      "files_excluding_sha256_manifest": 309,
+      "bytes": 5019694698
     },
     "manifests_excluding_sha256": {
       "files_excluding_sha256_manifest": 9,
-      "bytes": 32212
+      "bytes": 35133
     }
   },
   "paper_release_sections": {
     "appendix_d1": {
       "files_excluding_sha256_manifest": 157,
-      "bytes": 77679221
+      "bytes": 77677781
     },
     "embeddings": {
       "files_excluding_sha256_manifest": 1,
       "bytes": 18933006
     },
     "finding1": {
-      "files_excluding_sha256_manifest": 2,
-      "bytes": 4231814
+      "files_excluding_sha256_manifest": 12,
+      "bytes": 39942491
     },
     "finding2": {
-      "files_excluding_sha256_manifest": 69,
-      "bytes": 1053214055
+      "files_excluding_sha256_manifest": 67,
+      "bytes": 988512306
     },
     "finding3": {
-      "files_excluding_sha256_manifest": 52,
-      "bytes": 3821596497
+      "files_excluding_sha256_manifest": 50,
+      "bytes": 3821484478
     },
     "inputs": {
       "files_excluding_sha256_manifest": 3,
@@ -56,16 +56,16 @@
   },
   "canonical_full_sections": {
     "answer_eval": {
-      "files_excluding_sha256_manifest": 177,
-      "bytes": 3823056491
+      "files_excluding_sha256_manifest": 163,
+      "bytes": 3076716120
     },
     "common100": {
       "files_excluding_sha256_manifest": 22,
-      "bytes": 3025241
+      "bytes": 2934941
     },
     "criterion_match": {
       "files_excluding_sha256_manifest": 77154,
-      "bytes": 1047148579
+      "bytes": 1039774553
     },
     "responses": {
       "files_excluding_sha256_manifest": 14,
@@ -86,6 +86,7 @@
       "code/bin/02_build_model_responses",
       "code/bin/03_run_human_model_scoring",
       "code/bin/04_run_finding1_pair_pipeline",
+      "code/bin/04b_run_finding1_rubric_capture",
       "code/bin/05_run_finding2_generality_pipeline",
       "code/bin/06_run_finding3_coverage_pipeline",
       "code/bin/07_build_release_summaries"
@@ -120,6 +121,20 @@
         "human_only_rows": 2542,
         "model_only_rows": 5748
       }
+    },
+    {
+      "path": "data/paper_release/finding1/rubric_as_response_capture/summary_three_models_nointro_underlying_eval_point_capture.json",
+      "kind": "staged_derived_summary",
+      "headline_counts": {
+        "models": 3,
+        "dilemmas": 100,
+        "human_criteria": 2254,
+        "capture_scores": {
+          "gemini25_pro": 83.6,
+          "gpt54": 88.0,
+          "opus46": 89.0
+        }
+      }
     }
   ],
   "rebuild_limitations": [
@@ -139,6 +154,11 @@
     "finding2_changed": 5043,
     "finding2_mean_uplift_13": 18.37,
     "finding3_global_unique_human_only": 2227,
-    "finding3_global_unique_model_only": 20982
+    "finding3_global_unique_model_only": 20982,
+    "finding1_rubric_as_response_capture": {
+      "gemini25_pro": 83.6,
+      "gpt54": 88.0,
+      "opus46": 89.0
+    }
   }
 }

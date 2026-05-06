@@ -14,7 +14,7 @@ Two artifacts are shipped here as authoritative staged derived artifacts rather 
 1. `data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json`
 2. `data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl`
 
-In both cases, the paper-facing numbers are still machine-checkable from the release package itself. `code/validation/validate_release_metrics.py` recomputes the Finding 1, Finding 2, and Finding 3 headline numbers directly from the staged release data and writes a validation report under `manifests/validation/`.
+In both cases, the paper-facing numbers are still machine-checkable from the release package itself. `code/validation/validate_release_metrics.py` recomputes the Finding 1, Finding 2, and Finding 3 headline numbers directly from the staged release data, including the 100-case Finding 1 rubric-as-response capture check, and writes a validation report under `manifests/validation/`.
 
 ## Quick start
 
@@ -39,15 +39,16 @@ Stage wrappers are provided under `code/bin/`.
 - `02_build_model_responses`
 - `03_run_human_model_scoring`
 - `04_run_finding1_pair_pipeline`
+- `04b_run_finding1_rubric_capture`
 - `05_run_finding2_generality_pipeline`
 - `06_run_finding3_coverage_pipeline`
 - `07_build_release_summaries`
 
-The first three wrappers launch the release-local canonical runners directly. The Finding 3 wrapper can rerun the coverage pipeline with your own API key. The Finding 1 and Finding 2 wrappers validate the shipped staged artifacts because the exact upstream pair-consolidation and cascade-consolidation scripts are not part of the minimal vendored closure.
+The first three wrappers launch the release-local canonical runners directly. The Finding 1 rubric-as-response wrapper can regenerate the serialized rubric inputs without API calls and can rerun the judge with your own OpenRouter key. The Finding 3 wrapper can rerun the coverage pipeline with your own API key. The Finding 1 pair and Finding 2 wrappers validate the shipped staged artifacts because the exact upstream pair-consolidation and cascade-consolidation scripts are not part of the minimal vendored closure.
 
 ## Data scale
 
-The release package includes the full canonical rerun tree. In the audited release snapshot, `data/canonical_full/` contains 77,389 files and is about 4.9 GB. `data/paper_release/` contains the smaller paper-facing subset used for the main tables, figures, and appendix support.
+The release package includes the full canonical rerun tree. In the audited release snapshot, `data/canonical_full/` contains 77,375 files and is about 4.0 GB. `data/paper_release/` contains the smaller paper-facing subset used for the main tables, figures, and appendix support.
 
 ## API-backed reruns
 

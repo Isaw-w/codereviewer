@@ -44,6 +44,14 @@ parser.add_argument("--stall_poll_sec", type=float, default=5.0,
 parser.add_argument("--request_timeout_sec", type=float,
                     default=float(os.getenv("JUDGE_REQUEST_TIMEOUT_SEC", "60")),
                     help="Per-request deadline in seconds; overdue requests are skipped to .errors.jsonl and resume repair handles them later")
+parser.add_argument("--rubricasresp_prompt_variant",
+                    choices=["list_contains", "criterion_to_list", "underlying_eval_point"],
+                    default="list_contains",
+                    help="Prompt variant for __rubricasresp rows only")
+parser.add_argument("--criterion_weight_filter",
+                    choices=["all", "negative", "positive", "nonnegative"],
+                    default="all",
+                    help="Filter criteria by weight after loading input rows")
 
 args = parser.parse_args()
 
@@ -83,6 +91,23 @@ else:
 # Prepare criterion data
 criterion_data = prepare_criterion_data(data, args.judgement_type)
 
+if args.criterion_weight_filter != "all":
+    before_filter_count = len(criterion_data)
+
+    def _criterion_weight(dp):
+        try:
+            return int(dp.get("criterion_weight", 0))
+        except (TypeError, ValueError):
+            return 0
+
+    if args.criterion_weight_filter == "negative":
+        criterion_data = [dp for dp in criterion_data if _criterion_weight(dp) < 0]
+    elif args.criterion_weight_filter == "positive":
+        criterion_data = [dp for dp in criterion_data if _criterion_weight(dp) > 0]
+    elif args.criterion_weight_filter == "nonnegative":
+        criterion_data = [dp for dp in criterion_data if _criterion_weight(dp) >= 0]
+    print(f"Criterion weight filter: {args.criterion_weight_filter} ({len(criterion_data)}/{before_filter_count})")
+
 # Shuffle to increase cache hit
 random.seed(42)
 random.shuffle(criterion_data)
@@ -95,8 +120,17 @@ def get_judgement(idx, dp):
     """Get judgment for a single criterion"""
     reasoning_resp = dp["response"]
     rubric_criterion = dp["criterion"]
-    instruction_prompt = create_prompt_template_judge_model()
-    prompt = f'Reasoning Response:{reasoning_resp}\n\n{instruction_prompt}\n\nRubric Criterion:{rubric_criterion}'
+    if str(dp.get("model", "")).endswith("__rubricasresp"):
+        if args.rubricasresp_prompt_variant == "underlying_eval_point":
+            instruction_prompt = "Does the criterion below express the same underlying evaluative point as one of the criteria in the rubric list, even if it is phrased as a failure mode, negation, or bad outcome? Return yes or no only."
+        elif args.rubricasresp_prompt_variant == "criterion_to_list":
+            instruction_prompt = "Does the criterion below express the same idea as one of the criteria in the rubric list? Return yes or no only."
+        else:
+            instruction_prompt = "Does the rubric list contain a criterion that expresses the same point as the below criterion? Return yes or no only."
+        prompt = f'Rubric List:{reasoning_resp}\n\n{instruction_prompt}\n\nCriterion:{rubric_criterion}'
+    else:
+        instruction_prompt = create_prompt_template_judge_model()
+        prompt = f'Reasoning Response:{reasoning_resp}\n\n{instruction_prompt}\n\nRubric Criterion:{rubric_criterion}'
 
     response = ""
     input_tokens = 0

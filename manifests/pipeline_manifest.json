@@ -84,6 +84,33 @@
       ]
     },
     {
+      "stage_id": "04b_finding1_rubric_as_response_capture",
+      "title": "Finding 1 rubric-as-response capture check",
+      "wrapper": "code/bin/04b_run_finding1_rubric_capture",
+      "primary_inputs": [
+        "data/canonical_full/rubrics/",
+        "data/canonical_full/responses/",
+        "data/paper_release/inputs/dataset_100case_seed42.csv"
+      ],
+      "primary_scripts": [
+        "code/convert_rubric_to_response.py",
+        "code/run_best_judge_on_responses.py",
+        "code/score_rubric_capture.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/finding1/rubric_as_response_capture/",
+        "manifests/validation/metrics_report.json"
+      ],
+      "notes": [
+        "The shipped judge outputs and summaries record the original 100-case run for Gemini 2.5 Pro, GPT-5.4, and Opus 4.6.",
+        "The wrapper regenerates rubric-as-response inputs without API calls; RUN_JUDGE=1 reruns the GPT-OSS-120B judge through OpenRouter."
+      ],
+      "acceptance_artifacts": [
+        "data/paper_release/finding1/rubric_as_response_capture/summary_three_models_nointro_underlying_eval_point_capture.json"
+      ]
+    },
+    {
       "stage_id": "05_finding2_generality",
       "title": "Finding 2 generality and rewrite artifacts",
       "wrapper": "code/bin/05_run_finding2_generality_pipeline",

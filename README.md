@@ -41,7 +41,7 @@ Both scripts write reports under `manifests/validation/`.
 
 ## Reproducing each finding
 
-See `docs/REPRODUCE.md` for the full step-by-step rerun route, including the API-backed stages (rubric generation, response generation, scoring, generality check, coverage builder).
+See `docs/REPRODUCE.md` for the full step-by-step rerun route, including the API-backed stages (rubric generation, response generation, scoring, the Finding 1 rubric-as-response capture check, generality check, and coverage builder).
 
 ## Anonymity
 

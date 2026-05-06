@@ -61,6 +61,27 @@ This route verifies the three findings against the staged release artifacts.
 
 This validates the shipped staged pair artifact. The exact upstream pair-consolidation builder is not part of the vendored minimal closure.
 
+### 4b. Finding 1 rubric-as-response capture check
+
+The paper also reports a small 100-case rubric-as-response check: a model-written rubric is serialized as a numbered list, and a judge asks whether each human criterion's underlying evaluative point appears somewhere in that list. The shipped summaries live under `data/paper_release/finding1/rubric_as_response_capture/`.
+
+To regenerate the rubric-as-response input for one of the three released models without API calls:
+
+```bash
+./code/bin/04b_run_finding1_rubric_capture gemini25
+./code/bin/04b_run_finding1_rubric_capture gpt54
+./code/bin/04b_run_finding1_rubric_capture opus46
+```
+
+To rerun the GPT-OSS-120B judge and rescore the capture summaries, set `RUN_JUDGE=1` and provide an OpenRouter key:
+
+```bash
+LAB_OPENROUTER_KEY=... RUN_JUDGE=1 ./code/bin/04b_run_finding1_rubric_capture gpt54
+```
+
+The judge prompt variant is `underlying_eval_point`: it counts a match when the human criterion expresses the same underlying evaluative point as one of the rubric-list criteria, including when the human criterion is phrased as a failure mode, negation, or bad outcome. The capture score gives `abs(weight)` credit to every `yes` judgement, because the question is whether the rubric captures the evaluative point rather than whether an answer fulfills or violates it.
+The wrapper writes recomputed scores to `summary_recomputed_capture.json` so the shipped `summary_capture.json` remains an untouched record of the original run.
+
 ### 5. Finding 2 generality pipeline
 
 The first-pass judge can be rerun directly:

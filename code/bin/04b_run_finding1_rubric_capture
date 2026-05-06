@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+CODE_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+ROOT_DIR=$(cd "$CODE_DIR/.." && pwd)
+
+MODEL=${1:-gpt54}
+RUN_JUDGE=${RUN_JUDGE:-0}
+JUDGE_MODEL=${JUDGE_MODEL:-openai/gpt-oss-120b}
+JUDGE_WORKERS=${JUDGE_WORKERS:-50}
+
+case "$MODEL" in
+  gemini25|gemini25_pro)
+    MODEL_KEY="gemini25_pro"
+    MODEL_NAME="Gemini 2.5 Pro"
+    INPUT_BASENAME="gemini25_pro_finding1_rubricasresp_nointro.jsonl"
+    RUBRIC_FILE="$ROOT_DIR/data/canonical_full/rubrics/gemini25_pro_openrouter/ai_rubric_500cases_gemini25_pro_openrouter_seed0.jsonl"
+    RESPONSES_FILE="$ROOT_DIR/data/canonical_full/responses/gemini25_pro_openrouter/gemini-2.5-pro_reasoning_high_seed_0.jsonl"
+    ;;
+  gpt54)
+    MODEL_KEY="gpt54"
+    MODEL_NAME="GPT-5.4"
+    INPUT_BASENAME="gpt54_finding1_rubricasresp_nointro.jsonl"
+    RUBRIC_FILE="$ROOT_DIR/data/canonical_full/rubrics/gpt54_openrouter/ai_rubric_500cases_gpt54_openrouter_seed0.jsonl"
+    RESPONSES_FILE="$ROOT_DIR/data/canonical_full/responses/gpt54_openrouter/gpt-5.4_reasoning_high_seed_0.jsonl"
+    ;;
+  opus46|opus)
+    MODEL_KEY="opus46"
+    MODEL_NAME="Opus 4.6"
+    INPUT_BASENAME="opus46_finding1_rubricasresp_nointro.jsonl"
+    RUBRIC_FILE="$ROOT_DIR/data/canonical_full/rubrics/opus46_openrouter/ai_rubric_500cases_opus46_openrouter_seed0.jsonl"
+    RESPONSES_FILE="$ROOT_DIR/data/canonical_full/responses/opus46/claude-opus-4.6_reasoning_high_seed_0.jsonl"
+    ;;
+  *)
+    echo "Unknown model '$MODEL'. Use one of: gemini25, gpt54, opus46." >&2
+    exit 2
+    ;;
+esac
+
+CASE_FILTER="$ROOT_DIR/data/paper_release/inputs/dataset_100case_seed42.csv"
+OUT_DIR="$ROOT_DIR/data/paper_release/finding1/rubric_as_response_capture/$MODEL_KEY"
+INPUT_FILE="$OUT_DIR/inputs/$INPUT_BASENAME"
+JUDGE_DIR="$OUT_DIR/judgements_nointro_underlying_eval_point"
+JUDGE_FILE="$JUDGE_DIR/model_resp_$(basename "$INPUT_FILE")"
+SUMMARY_FILE="$OUT_DIR/summary_recomputed_capture.json"
+
+python3 "$CODE_DIR/convert_rubric_to_response.py" \
+  --ai_rubric_file "$RUBRIC_FILE" \
+  --responses_file "$RESPONSES_FILE" \
+  --case_filter_csv "$CASE_FILTER" \
+  --output_file "$INPUT_FILE"
+
+if [[ "$RUN_JUDGE" == "1" ]]; then
+  if [[ -z "${LAB_OPENROUTER_KEY:-}" ]]; then
+    echo "RUN_JUDGE=1 requires LAB_OPENROUTER_KEY in the environment." >&2
+    exit 2
+  fi
+  python3 "$CODE_DIR/run_best_judge_on_responses.py" \
+    -i "$INPUT_FILE" \
+    -jt model_resp \
+    -jm "$JUDGE_MODEL" \
+    -a "$LAB_OPENROUTER_KEY" \
+    -es 100 \
+    -n "$JUDGE_WORKERS" \
+    -o "$JUDGE_DIR" \
+    --rubricasresp_prompt_variant underlying_eval_point
+else
+  echo "Generated rubric-as-response input at $INPUT_FILE"
+  echo "Set RUN_JUDGE=1 and LAB_OPENROUTER_KEY=... to rerun judge calls."
+fi
+
+if [[ -f "$JUDGE_FILE" ]]; then
+  python3 "$CODE_DIR/score_rubric_capture.py" \
+    --judgements "$JUDGE_FILE" \
+    --output "$SUMMARY_FILE" \
+    --model_name "$MODEL_NAME"
+else
+  echo "No judgement file found at $JUDGE_FILE; skipping scoring."
+fi

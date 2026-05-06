@@ -52,7 +52,38 @@
         "h_no_m_yes": 52,
         "h_yes_m_no": 13
       }
-    ]
+    ],
+    "rubric_as_response_capture": {
+      "case_count": 100,
+      "judge_model": "openai/gpt-oss-120b",
+      "prompt_variant": "underlying_eval_point",
+      "models": {
+        "gemini25_pro": {
+          "rubric_list_capture_overall": 83.6,
+          "analysis_capture_same_cases_overall": 65.9,
+          "rubric_minus_analysis_capture": 17.7,
+          "rows": 2254,
+          "tasks": 100,
+          "input_rows_complete": true
+        },
+        "gpt54": {
+          "rubric_list_capture_overall": 88.0,
+          "analysis_capture_same_cases_overall": 62.0,
+          "rubric_minus_analysis_capture": 26.0,
+          "rows": 2254,
+          "tasks": 100,
+          "input_rows_complete": true
+        },
+        "opus46": {
+          "rubric_list_capture_overall": 89.0,
+          "analysis_capture_same_cases_overall": 65.2,
+          "rubric_minus_analysis_capture": 23.8,
+          "rows": 2254,
+          "tasks": 100,
+          "input_rows_complete": true
+        }
+      }
+    }
   },
   "finding2": {
     "criteria_total": 11450,

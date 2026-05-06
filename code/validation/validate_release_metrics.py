@@ -149,6 +149,30 @@ def compute_finding1() -> dict:
         "model_yes_pct": round_float(100.0 * model_yes / len(pairs), 2),
         "gap_pp": round_float(100.0 * (model_yes - human_yes) / len(pairs), 2),
         "bins": bins,
+        "rubric_as_response_capture": compute_finding1_rubric_capture(),
+    }
+
+
+def compute_finding1_rubric_capture() -> dict:
+    path = PAPER / "finding1" / "rubric_as_response_capture" / "summary_three_models_nointro_underlying_eval_point_capture.json"
+    obj = json.loads(path.read_text())
+    models = {}
+    for model_key, model_obj in sorted(obj["models"].items()):
+        rubric_capture = model_obj["rubric_list_capture"]
+        analysis_capture = model_obj["analysis_capture_same_cases"]
+        models[model_key] = {
+            "rubric_list_capture_overall": round_float(rubric_capture["overall"], 1),
+            "analysis_capture_same_cases_overall": round_float(analysis_capture["overall"], 1),
+            "rubric_minus_analysis_capture": round_float(model_obj["rubric_minus_analysis_capture"], 1),
+            "rows": int(rubric_capture["rows"]),
+            "tasks": int(rubric_capture["tasks"]),
+            "input_rows_complete": bool(model_obj["input_rows_complete"]),
+        }
+    return {
+        "case_count": int(obj["case_count"]),
+        "judge_model": obj["judge_model"],
+        "prompt_variant": obj["prompt_variant"],
+        "models": models,
     }
 
 
