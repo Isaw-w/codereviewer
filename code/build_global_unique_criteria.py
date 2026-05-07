@@ -11,9 +11,9 @@ Reuses embedding cache from a previous run (--embed_cache).
 Usage:
     python3 build_global_unique_criteria.py \\
         -ak "$LAB_OPENROUTER_KEY" \\
-        -o data/paper_release/finding3/coverage/global_unique_t70 \\
+        -o data/paper_release/finding2/coverage/global_unique_t70 \\
         --threshold 0.70 \\
-        --embed_cache data/paper_release/finding3/coverage/human_model_unique_t70_all
+        --embed_cache data/paper_release/finding2/coverage/human_model_unique_t70_all
 """
 from __future__ import annotations
 

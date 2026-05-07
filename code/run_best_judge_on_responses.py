@@ -5,6 +5,7 @@ import queue
 import random
 import threading
 import time
+from pathlib import Path
 
 from tqdm import tqdm
 
@@ -13,9 +14,29 @@ from prompts.create_prompts_for_rubric_eval import \
 from utils import (get_judge_response, load_existing_indices_as_set,
                    prepare_criterion_data, setup_client)
 
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+RELEASE_ROOT = Path(__file__).resolve().parents[1]
+
+
+def load_env_file(path):
+    if not path.exists():
+        return
+    for raw in path.read_text(encoding="utf-8").splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+def bootstrap_env():
+    for candidate in [RELEASE_ROOT / ".env", REPO_ROOT / ".env"]:
+        load_env_file(candidate)
+
 parser = argparse.ArgumentParser(description='Run judge model on generated responses (MoReBench)')
 parser.add_argument("--input_file", "-i", required=True, help="Path to input JSONL file with generations")
-parser.add_argument("--api_key", "-ak", required=True, help="API key for OpenRouter")
+parser.add_argument("--api_key", "-ak", "-a", default="", help="API key for OpenRouter, or an env var name")
 parser.add_argument("--judgement_type", "-jt", default="thinking_trace", 
                     choices=["model_resp", "thinking_trace"], 
                     help="Which field to judge: model_resp or thinking_trace")
@@ -54,6 +75,14 @@ parser.add_argument("--criterion_weight_filter",
                     help="Filter criteria by weight after loading input rows")
 
 args = parser.parse_args()
+
+bootstrap_env()
+if args.api_key and args.api_key in os.environ:
+    args.api_key = os.environ[args.api_key]
+if not str(args.api_key).strip():
+    args.api_key = os.environ.get("LAB_OPENROUTER_KEY", "").strip()
+if not str(args.api_key).strip():
+    raise RuntimeError("Missing OpenRouter API key. Pass -ak, -a, or set LAB_OPENROUTER_KEY in .env/the shell.")
 
 # Setup output filename
 if args.output_dir:

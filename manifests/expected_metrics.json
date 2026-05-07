@@ -1,91 +1,316 @@
 {
   "finding1": {
-    "models": 11,
-    "dilemmas": 100,
-    "pairs": 5181,
-    "human_yes_pct": 81.39,
-    "model_yes_pct": 89.4,
-    "gap_pp": 8.01,
-    "bins": [
-      {
-        "bin": ">=0.85",
-        "n": 275,
-        "human_yes_pct": 89.1,
-        "model_yes_pct": 93.1,
-        "gap_pp": 4.0,
-        "h_no_m_yes": 18,
-        "h_yes_m_no": 7
+    "case_count": 100,
+    "judge_model": "openai/gpt-oss-120b",
+    "prompt_variant": "underlying_eval_point",
+    "model_count": 7,
+    "models": {
+      "gemini25_pro": {
+        "model": "Gemini 2.5 Pro",
+        "group": "frontier",
+        "rubric_list_capture_overall": 83.6,
+        "open_ended_response_morebench_same_cases_overall": 71.9,
+        "rubric_minus_open_ended_morebench": 11.7,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
       },
-      {
-        "bin": "0.80-0.85",
-        "n": 792,
-        "human_yes_pct": 84.2,
-        "model_yes_pct": 90.5,
-        "gap_pp": 6.3,
-        "h_no_m_yes": 84,
-        "h_yes_m_no": 34
+      "gpt54": {
+        "model": "GPT-5.4",
+        "group": "frontier",
+        "rubric_list_capture_overall": 88.0,
+        "open_ended_response_morebench_same_cases_overall": 68.2,
+        "rubric_minus_open_ended_morebench": 19.8,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
       },
-      {
-        "bin": "0.70-0.80",
-        "n": 2391,
-        "human_yes_pct": 80.5,
-        "model_yes_pct": 88.4,
-        "gap_pp": 7.9,
-        "h_no_m_yes": 302,
-        "h_yes_m_no": 114
+      "llama31_8b_openrouter": {
+        "model": "LLaMA 3.1 8B",
+        "group": "smaller_model_baseline",
+        "rubric_list_capture_overall": 86.2,
+        "open_ended_response_morebench_same_cases_overall": 53.5,
+        "rubric_minus_open_ended_morebench": 32.7,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
       },
-      {
-        "bin": "0.60-0.70",
-        "n": 1400,
-        "human_yes_pct": 80.4,
-        "model_yes_pct": 89.5,
-        "gap_pp": 9.1,
-        "h_no_m_yes": 195,
-        "h_yes_m_no": 68
+      "llama32_3b_openrouter": {
+        "model": "LLaMA 3.2 3B",
+        "group": "smaller_model_baseline",
+        "rubric_list_capture_overall": 81.2,
+        "open_ended_response_morebench_same_cases_overall": 54.4,
+        "rubric_minus_open_ended_morebench": 26.8,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
       },
-      {
-        "bin": "<0.60",
-        "n": 323,
-        "human_yes_pct": 78.6,
-        "model_yes_pct": 90.7,
-        "gap_pp": 12.1,
-        "h_no_m_yes": 52,
-        "h_yes_m_no": 13
-      }
-    ],
-    "rubric_as_response_capture": {
-      "case_count": 100,
-      "judge_model": "openai/gpt-oss-120b",
-      "prompt_variant": "underlying_eval_point",
-      "models": {
-        "gemini25_pro": {
-          "rubric_list_capture_overall": 83.6,
-          "analysis_capture_same_cases_overall": 65.9,
-          "rubric_minus_analysis_capture": 17.7,
-          "rows": 2254,
-          "tasks": 100,
-          "input_rows_complete": true
-        },
-        "gpt54": {
-          "rubric_list_capture_overall": 88.0,
-          "analysis_capture_same_cases_overall": 62.0,
-          "rubric_minus_analysis_capture": 26.0,
-          "rows": 2254,
-          "tasks": 100,
-          "input_rows_complete": true
-        },
-        "opus46": {
-          "rubric_list_capture_overall": 89.0,
-          "analysis_capture_same_cases_overall": 65.2,
-          "rubric_minus_analysis_capture": 23.8,
-          "rows": 2254,
-          "tasks": 100,
-          "input_rows_complete": true
-        }
+      "mistral7b_v01_openrouter": {
+        "model": "Mistral 7B v0.1",
+        "group": "smaller_model_baseline",
+        "rubric_list_capture_overall": 85.7,
+        "open_ended_response_morebench_same_cases_overall": 54.1,
+        "rubric_minus_open_ended_morebench": 31.6,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
+      },
+      "opus46": {
+        "model": "Claude Opus 4.6",
+        "group": "frontier",
+        "rubric_list_capture_overall": 89.0,
+        "open_ended_response_morebench_same_cases_overall": 70.9,
+        "rubric_minus_open_ended_morebench": 18.1,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
+      },
+      "qwen25_7b_openrouter": {
+        "model": "Qwen 2.5 7B",
+        "group": "smaller_model_baseline",
+        "rubric_list_capture_overall": 83.1,
+        "open_ended_response_morebench_same_cases_overall": 58.4,
+        "rubric_minus_open_ended_morebench": 24.7,
+        "rows": 2254,
+        "tasks": 100,
+        "input_rows_complete": true
       }
     }
   },
   "finding2": {
+    "global_unique": {
+      "human_unique_concepts": 4787,
+      "human_only": 2227,
+      "human_only_pct": 46.5,
+      "human_covered_by_model": 2560,
+      "human_covered_pct": 53.5,
+      "model_unique_concepts": 25373,
+      "model_only": 20982,
+      "model_only_pct": 82.7,
+      "model_overlaps_human": 4391,
+      "model_overlap_pct": 17.3
+    },
+    "direct_check": {
+      "selected_cases": 100,
+      "selected_concepts": 1116,
+      "coverage_pct": 50.1,
+      "pooled_human_only_total": 2227,
+      "confirmed_human_only": 1969,
+      "concept_model_evaluations": 12276,
+      "confirmation_rate_pct": 16.0,
+      "human_only_instances": 3291,
+      "model_only_instances": 6870
+    },
+    "samebranch_intersection": {
+      "rows": 8290,
+      "human_only_rows": 2542,
+      "model_only_rows": 5748,
+      "pair_count": 11
+    },
+    "pairwise_primary_means": {
+      "consequences, harm, or benefit": {
+        "human_mean": 35.9,
+        "model_mean": 15.2
+      },
+      "practical wisdom or framing": {
+        "human_mean": 21.4,
+        "model_mean": 45.3
+      },
+      "epistemic humility": {
+        "human_mean": 11.3,
+        "model_mean": 14.0
+      },
+      "duties, rights, or autonomy": {
+        "human_mean": 9.4,
+        "model_mean": 6.8
+      },
+      "role obligations or boundaries": {
+        "human_mean": 6.9,
+        "model_mean": 3.0
+      }
+    },
+    "pooled_primary_shares": {
+      "consequences, harm, or benefit": {
+        "human_only": 36.1,
+        "model_only": 15.3
+      },
+      "practical wisdom or framing": {
+        "human_only": 21.3,
+        "model_only": 44.5
+      },
+      "epistemic humility": {
+        "human_only": 11.2,
+        "model_only": 14.4
+      },
+      "duties, rights, or autonomy": {
+        "human_only": 9.3,
+        "model_only": 6.9
+      },
+      "role obligations or boundaries": {
+        "human_only": 6.9,
+        "model_only": 3.0
+      }
+    },
+    "pooled_level2_shares": {
+      "career, economic, or reputation effects": {
+        "human_only": 6.0,
+        "model_only": 1.5
+      },
+      "institutional, social, or public effects": {
+        "human_only": 7.8,
+        "model_only": 2.3
+      },
+      "relationship or trust effects": {
+        "human_only": 3.0,
+        "model_only": 1.0
+      },
+      "general duty or right": {
+        "human_only": 4.0,
+        "model_only": 0.5
+      },
+      "connect reasoning to conclusion": {
+        "human_only": 4.0,
+        "model_only": 14.2
+      },
+      "balanced dilemma framing": {
+        "human_only": 4.1,
+        "model_only": 10.4
+      },
+      "distinguish fact from assumption": {
+        "human_only": 2.2,
+        "model_only": 6.5
+      },
+      "actionable steps": {
+        "human_only": 5.2,
+        "model_only": 10.3
+      },
+      "deception or manipulation": {
+        "human_only": 0.9,
+        "model_only": 3.2
+      },
+      "respect for dignity": {
+        "human_only": 0.2,
+        "model_only": 0.9
+      },
+      "humiliation or shame": {
+        "human_only": 0.2,
+        "model_only": 0.8
+      }
+    },
+    "primary_label_by_model": [
+      {
+        "model": "GPT-5.4",
+        "human_only": 167,
+        "model_only": 741,
+        "consequences, harm, or benefit": -21.7,
+        "practical wisdom or framing": 8.8,
+        "epistemic humility": 11.9,
+        "duties, rights, or autonomy": 1.1,
+        "role obligations or boundaries": -2.9
+      },
+      {
+        "model": "Claude Opus 4.6",
+        "human_only": 171,
+        "model_only": 492,
+        "consequences, harm, or benefit": -20.5,
+        "practical wisdom or framing": 16.4,
+        "epistemic humility": 0.0,
+        "duties, rights, or autonomy": -3.6,
+        "role obligations or boundaries": 0.5
+      },
+      {
+        "model": "Claude Sonnet 4",
+        "human_only": 195,
+        "model_only": 489,
+        "consequences, harm, or benefit": -13.7,
+        "practical wisdom or framing": 35.6,
+        "epistemic humility": -1.6,
+        "duties, rights, or autonomy": -5.9,
+        "role obligations or boundaries": -5.9
+      },
+      {
+        "model": "DeepSeek V3.2 Exp",
+        "human_only": 228,
+        "model_only": 544,
+        "consequences, harm, or benefit": -23.5,
+        "practical wisdom or framing": 32.8,
+        "epistemic humility": 4.0,
+        "duties, rights, or autonomy": -2.8,
+        "role obligations or boundaries": -7.5
+      },
+      {
+        "model": "Kimi K2.5",
+        "human_only": 239,
+        "model_only": 549,
+        "consequences, harm, or benefit": -22.6,
+        "practical wisdom or framing": 12.9,
+        "epistemic humility": 6.8,
+        "duties, rights, or autonomy": 2.2,
+        "role obligations or boundaries": -0.2
+      },
+      {
+        "model": "Qwen 3.5 397B",
+        "human_only": 254,
+        "model_only": 551,
+        "consequences, harm, or benefit": -19.1,
+        "practical wisdom or framing": 15.0,
+        "epistemic humility": 4.5,
+        "duties, rights, or autonomy": -3.7,
+        "role obligations or boundaries": -3.2
+      },
+      {
+        "model": "MiMo V2 Pro",
+        "human_only": 214,
+        "model_only": 462,
+        "consequences, harm, or benefit": -16.7,
+        "practical wisdom or framing": 30.1,
+        "epistemic humility": 5.1,
+        "duties, rights, or autonomy": -5.9,
+        "role obligations or boundaries": -8.9
+      },
+      {
+        "model": "Gemini 3 Flash",
+        "human_only": 267,
+        "model_only": 510,
+        "consequences, harm, or benefit": -18.1,
+        "practical wisdom or framing": 22.9,
+        "epistemic humility": -5.2,
+        "duties, rights, or autonomy": -1.4,
+        "role obligations or boundaries": -2.1
+      },
+      {
+        "model": "DeepSeek R1",
+        "human_only": 273,
+        "model_only": 511,
+        "consequences, harm, or benefit": -17.7,
+        "practical wisdom or framing": 24.4,
+        "epistemic humility": 2.3,
+        "duties, rights, or autonomy": -2.5,
+        "role obligations or boundaries": -8.3
+      },
+      {
+        "model": "Gemini 3.1 Pro",
+        "human_only": 278,
+        "model_only": 481,
+        "consequences, harm, or benefit": -27.6,
+        "practical wisdom or framing": 35.2,
+        "epistemic humility": -1.1,
+        "duties, rights, or autonomy": -2.6,
+        "role obligations or boundaries": -2.1
+      },
+      {
+        "model": "Gemini 2.5 Pro",
+        "human_only": 256,
+        "model_only": 418,
+        "consequences, harm, or benefit": -26.8,
+        "practical wisdom or framing": 28.6,
+        "epistemic humility": 3.2,
+        "duties, rights, or autonomy": -3.8,
+        "role obligations or boundaries": -2.1
+      }
+    ]
+  },
+  "finding3": {
     "criteria_total": 11450,
     "changed": 5043,
     "unchanged": 6407,
@@ -165,53 +390,412 @@
         "cascade_rewritten_score": 84.51,
         "uplift": 14.31
       }
-    }
-  },
-  "finding3": {
-    "global_unique": {
-      "human_only": 2227,
-      "model_only": 20982,
-      "human_covered_by_model": 2560,
-      "model_overlaps_human": 4391
     },
-    "direct_check": {
-      "selected_cases": 100,
-      "selected_concepts": 1116,
-      "coverage_pct": 50.1,
-      "pooled_human_only_total": 2227,
-      "confirmed_human_only": 1969,
-      "concept_model_evaluations": 12276,
-      "confirmation_rate_pct": 16.0,
-      "human_only_instances": 3291,
-      "model_only_instances": 6870
+    "matched_pairs": {
+      "models": 11,
+      "dilemmas": 100,
+      "pairs": 5181,
+      "human_yes_pct": 81.39,
+      "model_yes_pct": 89.4,
+      "gap_pp": 8.01,
+      "h_no_m_yes": 651,
+      "h_yes_m_no": 236,
+      "binom_p": 6.6375e-46,
+      "bins": [
+        {
+          "bin": ">=0.85",
+          "n": 275,
+          "human_yes_pct": 89.1,
+          "model_yes_pct": 93.1,
+          "gap_pp": 4.0,
+          "h_no_m_yes": 18,
+          "h_yes_m_no": 7,
+          "binom_p": 0.021642625331878662,
+          "binom_p_sci_2": "2.16e-02"
+        },
+        {
+          "bin": "0.80-0.85",
+          "n": 792,
+          "human_yes_pct": 84.2,
+          "model_yes_pct": 90.5,
+          "gap_pp": 6.3,
+          "h_no_m_yes": 84,
+          "h_yes_m_no": 34,
+          "binom_p": 2.3622352850086952e-06,
+          "binom_p_sci_2": "2.36e-06"
+        },
+        {
+          "bin": "0.70-0.80",
+          "n": 2391,
+          "human_yes_pct": 80.5,
+          "model_yes_pct": 88.4,
+          "gap_pp": 7.9,
+          "h_no_m_yes": 302,
+          "h_yes_m_no": 114,
+          "binom_p": 5.127205822792911e-21,
+          "binom_p_sci_2": "5.13e-21"
+        },
+        {
+          "bin": "0.60-0.70",
+          "n": 1400,
+          "human_yes_pct": 80.4,
+          "model_yes_pct": 89.5,
+          "gap_pp": 9.1,
+          "h_no_m_yes": 195,
+          "h_yes_m_no": 68,
+          "binom_p": 1.1012218174058118e-15,
+          "binom_p_sci_2": "1.10e-15"
+        },
+        {
+          "bin": "<0.60",
+          "n": 323,
+          "human_yes_pct": 78.6,
+          "model_yes_pct": 90.7,
+          "gap_pp": 12.1,
+          "h_no_m_yes": 52,
+          "h_yes_m_no": 13,
+          "binom_p": 5.844058066184856e-07,
+          "binom_p_sci_2": "5.84e-07"
+        }
+      ],
+      "per_model": [
+        {
+          "model": "Claude Sonnet 4",
+          "n": 510,
+          "human_yes_pct": 75.7,
+          "model_yes_pct": 88.6,
+          "gap_pp": 12.9,
+          "h_no_m_yes": 82,
+          "h_yes_m_no": 16
+        },
+        {
+          "model": "Claude Opus 4.6",
+          "n": 544,
+          "human_yes_pct": 73.3,
+          "model_yes_pct": 84.9,
+          "gap_pp": 11.6,
+          "h_no_m_yes": 91,
+          "h_yes_m_no": 28
+        },
+        {
+          "model": "Qwen 3.5 397B",
+          "n": 441,
+          "human_yes_pct": 78.9,
+          "model_yes_pct": 88.9,
+          "gap_pp": 10.0,
+          "h_no_m_yes": 61,
+          "h_yes_m_no": 17
+        },
+        {
+          "model": "GPT-5.4",
+          "n": 501,
+          "human_yes_pct": 81.8,
+          "model_yes_pct": 90.8,
+          "gap_pp": 9.0,
+          "h_no_m_yes": 66,
+          "h_yes_m_no": 21
+        },
+        {
+          "model": "DeepSeek R1",
+          "n": 469,
+          "human_yes_pct": 83.2,
+          "model_yes_pct": 91.3,
+          "gap_pp": 8.1,
+          "h_no_m_yes": 63,
+          "h_yes_m_no": 25
+        },
+        {
+          "model": "Gemini 2.5 Pro",
+          "n": 419,
+          "human_yes_pct": 86.6,
+          "model_yes_pct": 94.5,
+          "gap_pp": 7.9,
+          "h_no_m_yes": 40,
+          "h_yes_m_no": 7
+        },
+        {
+          "model": "MiMo V2 Pro",
+          "n": 486,
+          "human_yes_pct": 85.2,
+          "model_yes_pct": 93.0,
+          "gap_pp": 7.8,
+          "h_no_m_yes": 51,
+          "h_yes_m_no": 13
+        },
+        {
+          "model": "Kimi K2.5",
+          "n": 389,
+          "human_yes_pct": 84.1,
+          "model_yes_pct": 91.8,
+          "gap_pp": 7.7,
+          "h_no_m_yes": 47,
+          "h_yes_m_no": 17
+        },
+        {
+          "model": "DeepSeek V3.2 Exp",
+          "n": 531,
+          "human_yes_pct": 80.6,
+          "model_yes_pct": 87.2,
+          "gap_pp": 6.6,
+          "h_no_m_yes": 68,
+          "h_yes_m_no": 33
+        },
+        {
+          "model": "Gemini 3.1 Pro",
+          "n": 462,
+          "human_yes_pct": 84.2,
+          "model_yes_pct": 88.5,
+          "gap_pp": 4.3,
+          "h_no_m_yes": 45,
+          "h_yes_m_no": 25
+        },
+        {
+          "model": "Gemini 3 Flash",
+          "n": 429,
+          "human_yes_pct": 84.6,
+          "model_yes_pct": 85.3,
+          "gap_pp": 0.7,
+          "h_no_m_yes": 37,
+          "h_yes_m_no": 34
+        }
+      ]
     },
-    "samebranch_intersection": {
-      "rows": 8290,
-      "human_only_rows": 2542,
-      "model_only_rows": 5748,
-      "pair_count": 11
-    },
-    "pairwise_primary_means": {
-      "consequences, harm, or benefit": {
-        "human_mean": 35.9,
-        "model_mean": 15.2
+    "generality_validation": {
+      "source_table": [
+        {
+          "source": "Claude Sonnet 4",
+          "Gemini 3.1 Pro": 91.3,
+          "Kimi K2.5": 95.4,
+          "GPT-5.4": 78.8,
+          "n": 2983,
+          "mean": 88.5
+        },
+        {
+          "source": "Claude Opus 4.6",
+          "Gemini 3.1 Pro": 79.1,
+          "Kimi K2.5": 94.7,
+          "GPT-5.4": 74.6,
+          "n": 2827,
+          "mean": 82.8
+        },
+        {
+          "source": "DeepSeek R1",
+          "Gemini 3.1 Pro": 82.1,
+          "Kimi K2.5": 89.6,
+          "GPT-5.4": 67.3,
+          "n": 2474,
+          "mean": 79.7
+        },
+        {
+          "source": "DeepSeek V3.2 Exp",
+          "Gemini 3.1 Pro": 90.6,
+          "Kimi K2.5": 96.3,
+          "GPT-5.4": 77.1,
+          "n": 2551,
+          "mean": 88.0
+        },
+        {
+          "source": "Gemini 2.5 Pro",
+          "Gemini 3.1 Pro": 83.6,
+          "Kimi K2.5": 87.5,
+          "GPT-5.4": 70.3,
+          "n": 2288,
+          "mean": 80.5
+        },
+        {
+          "source": "Gemini 3.1 Pro",
+          "Gemini 3.1 Pro": 88.0,
+          "Kimi K2.5": 95.6,
+          "GPT-5.4": 71.7,
+          "n": 2440,
+          "mean": 85.1
+        },
+        {
+          "source": "Gemini 3 Flash",
+          "Gemini 3.1 Pro": 78.3,
+          "Kimi K2.5": 89.1,
+          "GPT-5.4": 64.5,
+          "n": 2341,
+          "mean": 77.3
+        },
+        {
+          "source": "Gemma 3 4B",
+          "Gemini 3.1 Pro": 66.9,
+          "Kimi K2.5": 75.3,
+          "GPT-5.4": 59.1,
+          "n": 2523,
+          "mean": 67.1
+        },
+        {
+          "source": "GPT-5.4",
+          "Gemini 3.1 Pro": 87.9,
+          "Kimi K2.5": 97.8,
+          "GPT-5.4": 79.3,
+          "n": 3619,
+          "mean": 88.3
+        },
+        {
+          "source": "GPT-OSS-120B",
+          "Gemini 3.1 Pro": 74.1,
+          "Kimi K2.5": 88.4,
+          "GPT-5.4": 58.0,
+          "n": 3644,
+          "mean": 73.5
+        },
+        {
+          "source": "Kimi K2.5",
+          "Gemini 3.1 Pro": 78.9,
+          "Kimi K2.5": 92.7,
+          "GPT-5.4": 65.3,
+          "n": 2563,
+          "mean": 79.0
+        },
+        {
+          "source": "MiMo V2 Pro",
+          "Gemini 3.1 Pro": 92.2,
+          "Kimi K2.5": 94.6,
+          "GPT-5.4": 74.0,
+          "n": 2781,
+          "mean": 86.9
+        },
+        {
+          "source": "Qwen 3.5 397B",
+          "Gemini 3.1 Pro": 79.0,
+          "Kimi K2.5": 87.4,
+          "GPT-5.4": 65.3,
+          "n": 2445,
+          "mean": 77.3
+        },
+        {
+          "source": "Qwen 3.5 9B",
+          "Gemini 3.1 Pro": 77.8,
+          "Kimi K2.5": 84.8,
+          "GPT-5.4": 62.4,
+          "n": 2877,
+          "mean": 75.0
+        },
+        {
+          "source": "Human",
+          "Gemini 3.1 Pro": 56.6,
+          "Kimi K2.5": 70.1,
+          "GPT-5.4": 52.1,
+          "n": 2264,
+          "mean": 59.6
+        }
+      ],
+      "pooled_ai": {
+        "source": "Pooled AI",
+        "Gemini 3.1 Pro": 82.2,
+        "Kimi K2.5": 90.9,
+        "GPT-5.4": 69.2,
+        "n": 38356,
+        "mean": 80.8
       },
-      "practical wisdom or framing": {
-        "human_mean": 21.4,
-        "model_mean": 45.3
+      "human": {
+        "source": "Human",
+        "Gemini 3.1 Pro": 56.6,
+        "Kimi K2.5": 70.1,
+        "GPT-5.4": 52.1,
+        "n": 2264,
+        "mean": 59.6
       },
-      "epistemic humility": {
-        "human_mean": 11.3,
-        "model_mean": 14.0
+      "gap": {
+        "source": "Gap (AI - Human)",
+        "Gemini 3.1 Pro": 25.6,
+        "Kimi K2.5": 20.8,
+        "GPT-5.4": 17.1,
+        "mean": 21.2
       },
-      "duties, rights, or autonomy": {
-        "human_mean": 9.4,
-        "model_mean": 6.8
+      "z_statistics": {
+        "Gemini 3.1 Pro": 29.97,
+        "Kimi K2.5": 31.76,
+        "GPT-5.4": 17.01
       },
-      "role obligations or boundaries": {
-        "human_mean": 6.9,
-        "model_mean": 3.0
+      "unanimity": {
+        "pooled_ai": {
+          "n": 38356,
+          "unanimous_fail_pct": 5.8,
+          "unanimous_pass_pct": 64.2,
+          "all_same_pct": 70.0
+        },
+        "human": {
+          "n": 2264,
+          "unanimous_fail_pct": 23.8,
+          "unanimous_pass_pct": 42.8,
+          "all_same_pct": 66.6
+        },
+        "all_sources": {
+          "n": 40620,
+          "unanimous_fail_pct": 6.8,
+          "unanimous_pass_pct": 63.0,
+          "all_same_pct": 69.8
+        }
+      },
+      "pairwise_agreement": {
+        "Gemini 3.1 Pro vs Kimi K2.5": 85.1,
+        "Gemini 3.1 Pro vs GPT-5.4": 79.2,
+        "Kimi K2.5 vs GPT-5.4": 75.2
       }
+    },
+    "changed_unchanged_decomposition": {
+      "changed_count": 5043,
+      "unchanged_count": 6407,
+      "per_model": {
+        "gemini25_pro_openrouter": {
+          "changed_original": 59.3,
+          "changed_rewritten": 96.3,
+          "unchanged_original": 88.4,
+          "unchanged_rewritten": 88.2
+        },
+        "kimi_k2_5_openrouter": {
+          "changed_original": 58.8,
+          "changed_rewritten": 96.5,
+          "unchanged_original": 86.6,
+          "unchanged_rewritten": 86.7
+        },
+        "opus46": {
+          "changed_original": 57.3,
+          "changed_rewritten": 96.1,
+          "unchanged_original": 86.0,
+          "unchanged_rewritten": 85.6
+        },
+        "qwen35_9b_openrouter": {
+          "changed_original": 56.2,
+          "changed_rewritten": 94.7,
+          "unchanged_original": 85.5,
+          "unchanged_rewritten": 85.4
+        },
+        "gemma3_4b_openrouter": {
+          "changed_original": 52.0,
+          "changed_rewritten": 94.2,
+          "unchanged_original": 84.2,
+          "unchanged_rewritten": 84.6
+        }
+      },
+      "changed_original_range": [
+        52.0,
+        59.3
+      ],
+      "changed_rewritten_range": [
+        94.2,
+        96.5
+      ],
+      "unchanged_original_range": [
+        84.2,
+        88.4
+      ],
+      "unchanged_rewritten_range": [
+        84.6,
+        88.2
+      ],
+      "primary_changed_original_avg": 58.5,
+      "primary_changed_rewritten_avg": 96.3,
+      "small_changed_original_avg": 54.1,
+      "small_changed_rewritten_avg": 94.4,
+      "primary_unchanged_original_avg": 87.0,
+      "primary_unchanged_rewritten_avg": 86.8,
+      "small_unchanged_original_avg": 84.9,
+      "small_unchanged_rewritten_avg": 85.0
     }
   }
 }

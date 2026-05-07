@@ -1,26 +1,29 @@
 {
-  "generated_at": "2026-05-06 21:40:16",
   "counting_convention": "All file totals exclude manifests/sha256.json, which cannot include a hash of itself.",
-  "subtree_totals": {
+  "top_level": {
     "code": {
       "files_excluding_sha256_manifest": 42,
-      "bytes": 437134
+      "bytes": 438358
     },
     "docs": {
       "files_excluding_sha256_manifest": 4,
-      "bytes": 14057
+      "bytes": 15277
     },
     "data/canonical_full": {
       "files_excluding_sha256_manifest": 77375,
       "bytes": 4296541434
     },
     "data/paper_release": {
-      "files_excluding_sha256_manifest": 309,
-      "bytes": 5019694698
+      "files_excluding_sha256_manifest": 338,
+      "bytes": 5203913713
     },
     "manifests_excluding_sha256": {
       "files_excluding_sha256_manifest": 9,
-      "bytes": 35133
+      "bytes": 38289
+    },
+    "data/reviewer_sample": {
+      "files_excluding_sha256_manifest": 105,
+      "bytes": 168741773
     }
   },
   "canonical_full_sections": {
@@ -46,25 +49,21 @@
     }
   },
   "paper_release_sections": {
-    "appendix_d1": {
-      "files_excluding_sha256_manifest": 157,
-      "bytes": 77677781
-    },
     "embeddings": {
       "files_excluding_sha256_manifest": 1,
       "bytes": 18933006
     },
     "finding1": {
-      "files_excluding_sha256_manifest": 12,
-      "bytes": 39942491
+      "files_excluding_sha256_manifest": 39,
+      "bytes": 219929692
     },
     "finding2": {
-      "files_excluding_sha256_manifest": 67,
-      "bytes": 988512306
-    },
-    "finding3": {
       "files_excluding_sha256_manifest": 50,
       "bytes": 3821484478
+    },
+    "finding3": {
+      "files_excluding_sha256_manifest": 226,
+      "bytes": 1070421901
     },
     "inputs": {
       "files_excluding_sha256_manifest": 3,
@@ -73,6 +72,28 @@
     "rubrics": {
       "files_excluding_sha256_manifest": 19,
       "bytes": 69031942
+    }
+  },
+  "reviewer_sample_sections": {
+    "finding1": {
+      "files_excluding_sha256_manifest": 9,
+      "bytes": 128828
+    },
+    "finding2": {
+      "files_excluding_sha256_manifest": 12,
+      "bytes": 24543742
+    },
+    "finding3": {
+      "files_excluding_sha256_manifest": 62,
+      "bytes": 79405396
+    },
+    "inputs": {
+      "files_excluding_sha256_manifest": 3,
+      "bytes": 4112694
+    },
+    "rubrics": {
+      "files_excluding_sha256_manifest": 17,
+      "bytes": 60524123
     }
   }
 }

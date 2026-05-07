@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build a CLEAN residuals file for Finding 3 dual-method validation.
+Build a CLEAN residuals file for Finding 2 dual-method validation.
 
 Strategy: pick the 100 densest cases (most human-only concepts per case),
 which covers ~50% of all 2,227 human-only concepts. For each selected case,
@@ -38,9 +38,9 @@ def resolve_path(raw: str) -> Path:
     return repo_candidate
 
 
-GLOBAL_UNIQUE_PATH = resolve_path("data/paper_release/finding3/coverage/global_unique_t70/global_unique_criteria.jsonl")
+GLOBAL_UNIQUE_PATH = resolve_path("data/paper_release/finding2/coverage/global_unique_t70/global_unique_criteria.jsonl")
 HUMAN_RUBRIC_PATH = resolve_path("data/paper_release/rubrics/original/human_rubric_500cases.jsonl")
-OUT_PATH = resolve_path("data/paper_release/finding3/direct_check/residuals_top100.jsonl")
+OUT_PATH = resolve_path("data/paper_release/finding2/direct_check/residuals_top100.jsonl")
 
 
 # ── Same normalization as build_global_unique_criteria.py ────────────────────

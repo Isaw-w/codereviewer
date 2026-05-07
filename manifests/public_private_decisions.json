@@ -24,6 +24,11 @@
       "group": "manifests",
       "decision": "public",
       "rationale": "Needed for hashes, counts, provenance, and machine-checkable validation."
+    },
+    {
+      "group": "data/reviewer_sample",
+      "decision": "public",
+      "rationale": "Representative inspectability sample with release-relative paths matching the full dataset."
     }
   ],
   "not_in_release": [

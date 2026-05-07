@@ -8,14 +8,14 @@ if [[ "${1:-}" == "--run-round1" ]]; then
   : "${LAB_OPENROUTER_KEY:?LAB_OPENROUTER_KEY must be set for --run-round1}"
   python3 "$CODE_DIR/run_generality_check.py" \
     --rubric_file "$RELEASE_ROOT/data/paper_release/rubrics/original/human_rubric_500cases.jsonl" \
-    --output "$RELEASE_ROOT/data/paper_release/finding2/generality_round1_gpt54" \
+    --output "$RELEASE_ROOT/data/paper_release/finding3/generality_round1_gpt54" \
     --model openai/gpt-5.4 \
     --ak "$LAB_OPENROUTER_KEY" \
     --max-tokens 1024 \
     --reasoning-effort high \
     "$@"
 else
-  echo "Finding 2 note: the exact cascade-consolidation script that produced the shipped final rewritten rubric is not vendored in this minimal closure."
+  echo "Finding 3 note: the exact cascade-consolidation script that produced the shipped final rewritten rubric is not vendored in this minimal closure."
   echo "This wrapper validates the shipped rewrite audit, rewritten rubric, and rescoring trees."
-  python3 "$CODE_DIR/validation/validate_release_metrics.py" --section finding2 "$@"
+  python3 "$CODE_DIR/validation/validate_release_metrics.py" --section finding3 "$@"
 fi

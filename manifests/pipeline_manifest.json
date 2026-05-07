@@ -62,29 +62,7 @@
       ]
     },
     {
-      "stage_id": "04_finding1_pairs",
-      "title": "Finding 1 pair artifact",
-      "wrapper": "code/bin/04_run_finding1_pair_pipeline",
-      "primary_inputs": [
-        "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json"
-      ],
-      "primary_scripts": [
-        "code/validation/validate_release_metrics.py"
-      ],
-      "primary_outputs": [
-        "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json",
-        "manifests/validation/metrics_report.json"
-      ],
-      "notes": [
-        "The exact upstream pair-consolidation script is not part of the vendored minimal closure.",
-        "The shipped pair artifact is treated as authoritative and is revalidated from release-local data."
-      ],
-      "acceptance_artifacts": [
-        "manifests/paper_release_provenance.json"
-      ]
-    },
-    {
-      "stage_id": "04b_finding1_rubric_as_response_capture",
+      "stage_id": "04_finding1_rubric_as_response_capture",
       "title": "Finding 1 rubric-as-response capture check",
       "wrapper": "code/bin/04b_run_finding1_rubric_capture",
       "primary_inputs": [
@@ -100,45 +78,21 @@
       ],
       "primary_outputs": [
         "data/paper_release/finding1/rubric_as_response_capture/",
+        "data/paper_release/finding1/open_ended_response_eval/",
         "manifests/validation/metrics_report.json"
       ],
       "notes": [
-        "The shipped judge outputs and summaries record the original 100-case run for Gemini 2.5 Pro, GPT-5.4, and Opus 4.6.",
-        "The wrapper regenerates rubric-as-response inputs without API calls; RUN_JUDGE=1 reruns the GPT-OSS-120B judge through OpenRouter."
+        "The shipped judge outputs and summaries record the original 100-case run for three frontier models and four smaller-model baselines.",
+        "The wrapper regenerates frontier rubric-as-response inputs without API calls; RUN_JUDGE=1 reruns the GPT-OSS-120B judge through OpenRouter."
       ],
       "acceptance_artifacts": [
-        "data/paper_release/finding1/rubric_as_response_capture/summary_three_models_nointro_underlying_eval_point_capture.json"
+        "data/paper_release/finding1/rubric_as_response_capture/summary_all_models_nointro_underlying_eval_point_capture.json"
       ]
     },
     {
-      "stage_id": "05_finding2_generality",
-      "title": "Finding 2 generality and rewrite artifacts",
-      "wrapper": "code/bin/05_run_finding2_generality_pipeline",
-      "primary_inputs": [
-        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl",
-        "data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl",
-        "data/canonical_full/answer_eval/"
-      ],
-      "primary_scripts": [
-        "code/run_generality_check.py",
-        "code/validation/validate_release_metrics.py"
-      ],
-      "primary_outputs": [
-        "data/paper_release/rubrics/rewrite/",
-        "data/paper_release/finding2/cascade_rescoring/"
-      ],
-      "notes": [
-        "The first-pass generality judge can be rerun with the vendored script.",
-        "The exact upstream cascade-consolidation step that produced the shipped final rewritten rubric is not vendored in this minimal closure."
-      ],
-      "acceptance_artifacts": [
-        "manifests/paper_release_provenance.json"
-      ]
-    },
-    {
-      "stage_id": "06_finding3_coverage",
-      "title": "Finding 3 coverage and direct check",
-      "wrapper": "code/bin/06_run_finding3_coverage_pipeline",
+      "stage_id": "05_finding2_coverage",
+      "title": "Finding 2 coverage and direct check",
+      "wrapper": "code/bin/05_run_finding2_coverage_pipeline",
       "primary_inputs": [
         "data/canonical_full/rubrics/",
         "data/paper_release/rubrics/original/human_rubric_500cases.jsonl"
@@ -151,12 +105,60 @@
         "code/run_find_only_dual_method.py"
       ],
       "primary_outputs": [
-        "data/paper_release/finding3/coverage/",
-        "data/paper_release/finding3/direct_check/",
-        "data/paper_release/finding3/normative_tendencies/"
+        "data/paper_release/finding2/coverage/",
+        "data/paper_release/finding2/direct_check/",
+        "data/paper_release/finding2/normative_tendencies/"
       ],
       "acceptance_artifacts": [
         "manifests/expected_metrics.json"
+      ]
+    },
+    {
+      "stage_id": "06a_finding3_pairs",
+      "title": "Finding 3 matched-pair artifact",
+      "wrapper": "code/bin/06a_run_finding3_pair_pipeline",
+      "primary_inputs": [
+        "data/paper_release/finding3/criterion_pairs/finding1_confirmed_pairs.json"
+      ],
+      "primary_scripts": [
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/finding3/criterion_pairs/finding1_confirmed_pairs.json",
+        "manifests/validation/metrics_report.json"
+      ],
+      "notes": [
+        "The exact upstream pair-consolidation script is not part of the vendored minimal closure.",
+        "The shipped pair artifact is treated as authoritative and is revalidated from release-local data."
+      ],
+      "acceptance_artifacts": [
+        "manifests/paper_release_provenance.json"
+      ]
+    },
+    {
+      "stage_id": "06b_finding3_generality",
+      "title": "Finding 3 generality and rewrite artifacts",
+      "wrapper": "code/bin/06b_run_finding3_generality_pipeline",
+      "primary_inputs": [
+        "data/paper_release/rubrics/original/human_rubric_500cases.jsonl",
+        "data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl",
+        "data/canonical_full/answer_eval/"
+      ],
+      "primary_scripts": [
+        "code/run_generality_check.py",
+        "code/validation/validate_release_metrics.py"
+      ],
+      "primary_outputs": [
+        "data/paper_release/rubrics/rewrite/",
+        "data/paper_release/finding3/cascade_rescoring/",
+        "data/paper_release/finding3/generality_validation/"
+      ],
+      "notes": [
+        "The first-pass generality judge can be rerun with the vendored script.",
+        "The exact upstream cascade-consolidation step that produced the shipped final rewritten rubric is not vendored in this minimal closure."
+      ],
+      "acceptance_artifacts": [
+        "manifests/paper_release_provenance.json"
       ]
     },
     {

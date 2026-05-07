@@ -11,7 +11,7 @@ Summary: --output_dir/summary.json
 Usage:
     python3 build_human_model_unique_criteria.py \
         -ak "$LAB_OPENROUTER_KEY" \
-        --output_dir data/paper_release/finding3/coverage/human_model_unique_t70_all \
+        --output_dir data/paper_release/finding2/coverage/human_model_unique_t70_all \
         --threshold 0.75 \
         --n 5   # test with 5 cases first
 """

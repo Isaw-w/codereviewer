@@ -1,49 +1,49 @@
 {
   "release_root": "release_staging",
-  "generated_at": "2026-05-06 21:40:16",
+  "generated_at": "2026-05-07",
   "inventory_convention": "File totals exclude manifests/sha256.json.",
   "subtree_totals": {
     "code": {
       "files_excluding_sha256_manifest": 42,
-      "bytes": 437134
+      "bytes": 438358
     },
     "docs": {
       "files_excluding_sha256_manifest": 4,
-      "bytes": 14057
+      "bytes": 15277
     },
     "data/canonical_full": {
       "files_excluding_sha256_manifest": 77375,
       "bytes": 4296541434
     },
     "data/paper_release": {
-      "files_excluding_sha256_manifest": 309,
-      "bytes": 5019694698
+      "files_excluding_sha256_manifest": 338,
+      "bytes": 5203913713
     },
     "manifests_excluding_sha256": {
       "files_excluding_sha256_manifest": 9,
-      "bytes": 35133
+      "bytes": 38289
+    },
+    "data/reviewer_sample": {
+      "files_excluding_sha256_manifest": 105,
+      "bytes": 168741773
     }
   },
   "paper_release_sections": {
-    "appendix_d1": {
-      "files_excluding_sha256_manifest": 157,
-      "bytes": 77677781
-    },
     "embeddings": {
       "files_excluding_sha256_manifest": 1,
       "bytes": 18933006
     },
     "finding1": {
-      "files_excluding_sha256_manifest": 12,
-      "bytes": 39942491
+      "files_excluding_sha256_manifest": 39,
+      "bytes": 219929692
     },
     "finding2": {
-      "files_excluding_sha256_manifest": 67,
-      "bytes": 988512306
-    },
-    "finding3": {
       "files_excluding_sha256_manifest": 50,
       "bytes": 3821484478
+    },
+    "finding3": {
+      "files_excluding_sha256_manifest": 226,
+      "bytes": 1070421901
     },
     "inputs": {
       "files_excluding_sha256_manifest": 3,
@@ -85,10 +85,10 @@
       "code/bin/01_build_ai_rubrics",
       "code/bin/02_build_model_responses",
       "code/bin/03_run_human_model_scoring",
-      "code/bin/04_run_finding1_pair_pipeline",
       "code/bin/04b_run_finding1_rubric_capture",
-      "code/bin/05_run_finding2_generality_pipeline",
-      "code/bin/06_run_finding3_coverage_pipeline",
+      "code/bin/05_run_finding2_coverage_pipeline",
+      "code/bin/06a_run_finding3_pair_pipeline",
+      "code/bin/06b_run_finding3_generality_pipeline",
       "code/bin/07_build_release_summaries"
     ],
     "validation_scripts": [
@@ -98,7 +98,34 @@
   },
   "key_artifacts": [
     {
-      "path": "data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json",
+      "path": "data/paper_release/finding1/rubric_as_response_capture/summary_all_models_nointro_underlying_eval_point_capture.json",
+      "kind": "staged_derived_summary",
+      "headline_counts": {
+        "models": 7,
+        "dilemmas": 100,
+        "capture_scores": {
+          "gemini25_pro": 83.6,
+          "gpt54": 88.0,
+          "llama31_8b_openrouter": 86.2,
+          "llama32_3b_openrouter": 81.2,
+          "mistral7b_v01_openrouter": 85.7,
+          "opus46": 89.0,
+          "qwen25_7b_openrouter": 83.1
+        }
+      }
+    },
+    {
+      "path": "data/paper_release/finding2/normative_tendencies/finding3_samebranch_intersection_label_summary.complete_all.json",
+      "kind": "staged_derived_summary",
+      "headline_counts": {
+        "rows": 8290,
+        "human_only_rows": 2542,
+        "model_only_rows": 5748,
+        "pair_count": 11
+      }
+    },
+    {
+      "path": "data/paper_release/finding3/criterion_pairs/finding1_confirmed_pairs.json",
       "kind": "staged_derived_artifact",
       "headline_counts": {
         "models": 11,
@@ -112,53 +139,46 @@
       "headline_counts": {
         "rows": 500
       }
-    },
-    {
-      "path": "data/paper_release/finding3/normative_tendencies/finding3_samebranch_intersection_label_summary.complete_all.json",
-      "kind": "staged_derived_summary",
-      "headline_counts": {
-        "rows": 8290,
-        "human_only_rows": 2542,
-        "model_only_rows": 5748
-      }
-    },
-    {
-      "path": "data/paper_release/finding1/rubric_as_response_capture/summary_three_models_nointro_underlying_eval_point_capture.json",
-      "kind": "staged_derived_summary",
-      "headline_counts": {
-        "models": 3,
-        "dilemmas": 100,
-        "human_criteria": 2254,
-        "capture_scores": {
-          "gemini25_pro": 83.6,
-          "gpt54": 88.0,
-          "opus46": 89.0
-        }
-      }
     }
   ],
   "rebuild_limitations": [
-    "The exact upstream pair-consolidation builder for Finding 1 is not vendored in the minimal code closure.",
-    "The exact upstream cascade-consolidation builder for the final Finding 2 rewritten rubric is not vendored in the minimal code closure.",
+    "The exact upstream pair-consolidation builder for Finding 3 is not vendored in the minimal code closure.",
+    "The exact upstream cascade-consolidation builder for the final Finding 3 rewritten rubric is not vendored in the minimal code closure.",
     "Release-local validation still recomputes the paper-facing Finding 1, Finding 2, and Finding 3 headline metrics from the staged release data."
   ],
   "validation_reports": {
     "closure_report": "manifests/validation/closure_report.json",
     "metrics_report": "manifests/validation/metrics_report.json",
-    "expected_metrics": "manifests/expected_metrics.json",
-    "closure_status": "ok",
-    "metrics_status": "ok"
+    "expected_metrics": "manifests/expected_metrics.json"
   },
   "headline_metrics_from_release_data": {
-    "finding1_pairs": 5181,
-    "finding2_changed": 5043,
-    "finding2_mean_uplift_13": 18.37,
-    "finding3_global_unique_human_only": 2227,
-    "finding3_global_unique_model_only": 20982,
-    "finding1_rubric_as_response_capture": {
-      "gemini25_pro": 83.6,
-      "gpt54": 88.0,
-      "opus46": 89.0
+    "finding1_models": 7,
+    "finding2_global_unique_human_only": 2227,
+    "finding2_global_unique_model_only": 20982,
+    "finding3_pairs": 5181,
+    "finding3_changed": 5043,
+    "finding3_mean_uplift_13": 18.37
+  },
+  "reviewer_sample_sections": {
+    "finding1": {
+      "files_excluding_sha256_manifest": 9,
+      "bytes": 128828
+    },
+    "finding2": {
+      "files_excluding_sha256_manifest": 12,
+      "bytes": 24543742
+    },
+    "finding3": {
+      "files_excluding_sha256_manifest": 62,
+      "bytes": 79405396
+    },
+    "inputs": {
+      "files_excluding_sha256_manifest": 3,
+      "bytes": 4112694
+    },
+    "rubrics": {
+      "files_excluding_sha256_manifest": 17,
+      "bytes": 60524123
     }
   }
 }

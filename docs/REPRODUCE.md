@@ -29,9 +29,9 @@ python3 code/validation/validate_release_metrics.py --section all
 
 This route verifies the three findings against the staged release artifacts.
 
-- Finding 1 is recomputed from `data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json`.
-- Finding 2 is recomputed from `data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl` together with the staged original and cascade judgement trees in `data/canonical_full/answer_eval/`.
-- Finding 3 is recomputed from the staged coverage summaries, top-100 direct-check summaries, raw direct-check outputs, and same-branch normative-tendency files in `data/paper_release/finding3/`.
+- Finding 1 is recomputed from `data/paper_release/finding1/rubric_as_response_capture/summary_all_models_nointro_underlying_eval_point_capture.json`, including the four smaller-model baselines.
+- Finding 2 is recomputed from the staged coverage summaries, top-100 direct-check summaries, raw direct-check outputs, and same-branch normative-tendency files in `data/paper_release/finding2/`.
+- Finding 3 is recomputed from `data/paper_release/finding3/criterion_pairs/finding1_confirmed_pairs.json`, `data/paper_release/rubrics/rewrite/cascade_rewrite_audit.jsonl`, and the staged original and cascade judgement trees in `data/canonical_full/answer_eval/`.
 
 ## Full rerun route
 
@@ -53,19 +53,11 @@ This route verifies the three findings against the staged release artifacts.
 ./code/bin/03_run_human_model_scoring --pilot_only --models gpt54_openrouter
 ```
 
-### 4. Finding 1 pair artifact
+### 4. Finding 1 rubric-as-response capture check
 
-```bash
-./code/bin/04_run_finding1_pair_pipeline
-```
+Finding 1 serializes a model-written rubric as a numbered list, then asks a judge whether each human criterion's underlying evaluative point appears somewhere in that list. The shipped summaries live under `data/paper_release/finding1/rubric_as_response_capture/`.
 
-This validates the shipped staged pair artifact. The exact upstream pair-consolidation builder is not part of the vendored minimal closure.
-
-### 4b. Finding 1 rubric-as-response capture check
-
-The paper also reports a small 100-case rubric-as-response check: a model-written rubric is serialized as a numbered list, and a judge asks whether each human criterion's underlying evaluative point appears somewhere in that list. The shipped summaries live under `data/paper_release/finding1/rubric_as_response_capture/`.
-
-To regenerate the rubric-as-response input for one of the three released models without API calls:
+To regenerate the rubric-as-response input for one of the three released frontier models without API calls:
 
 ```bash
 ./code/bin/04b_run_finding1_rubric_capture gemini25
@@ -79,32 +71,41 @@ To rerun the GPT-OSS-120B judge and rescore the capture summaries, set `RUN_JUDG
 LAB_OPENROUTER_KEY=... RUN_JUDGE=1 ./code/bin/04b_run_finding1_rubric_capture gpt54
 ```
 
-The judge prompt variant is `underlying_eval_point`: it counts a match when the human criterion expresses the same underlying evaluative point as one of the rubric-list criteria, including when the human criterion is phrased as a failure mode, negation, or bad outcome. The capture score gives `abs(weight)` credit to every `yes` judgement, because the question is whether the rubric captures the evaluative point rather than whether an answer fulfills or violates it.
-The wrapper writes recomputed scores to `summary_recomputed_capture.json` so the shipped `summary_capture.json` remains an untouched record of the original run.
+The judge prompt variant is `underlying_eval_point`: it counts a match when the human criterion expresses the same underlying evaluative point as one of the rubric-list criteria, including when the human criterion is phrased as a failure mode, negation, or bad outcome. The capture score gives `abs(weight)` credit to every `yes` judgement, because the question is whether the rubric captures the evaluative point rather than whether an answer fulfills or violates it. The wrapper writes recomputed scores to `summary_recomputed_capture.json` so the shipped `summary_capture.json` remains an untouched record of the original run.
 
-### 5. Finding 2 generality pipeline
+The smaller-model baseline inputs and judge outputs are shipped under `data/paper_release/finding1/rubric_as_response_capture/small_model_baselines/` and their open-ended-response judgement outputs are under `data/paper_release/finding1/open_ended_response_eval/small_model_baselines/`.
 
-The first-pass judge can be rerun directly:
-
-```bash
-LAB_OPENROUTER_KEY=... ./code/bin/05_run_finding2_generality_pipeline --run-round1
-```
-
-The final shipped cascade rewrite remains a staged derived artifact in this anonymous package. The exact upstream cascade-consolidation builder is not part of the minimal vendored closure, so the wrapper validates the released final artifact rather than pretending to rebuild it.
-
-### 6. Finding 3 coverage pipeline
+### 5. Finding 2 coverage pipeline
 
 ```bash
-LAB_OPENROUTER_KEY=... ./code/bin/06_run_finding3_coverage_pipeline
+LAB_OPENROUTER_KEY=... ./code/bin/05_run_finding2_coverage_pipeline
 ```
 
 To also rerun the direct LLM check on the selected cases:
 
 ```bash
-LAB_OPENROUTER_KEY=... ./code/bin/06_run_finding3_coverage_pipeline --with-direct-check
+LAB_OPENROUTER_KEY=... ./code/bin/05_run_finding2_coverage_pipeline --with-direct-check
 ```
 
-The shipped tree contains the two coverage subdirectories the paper-facing analyses read directly: `data/paper_release/finding3/coverage/human_model_unique_t70_all/` and `data/paper_release/finding3/coverage/global_unique_t70/`. The third subdirectory, `data/paper_release/finding3/coverage/pooled_unique_t70/`, is created by `build_pooled_unique_criteria.py` on first run of stage 6 and is not required for the minimal verification route.
+The shipped tree contains the two coverage subdirectories the paper-facing analyses read directly: `data/paper_release/finding2/coverage/human_model_unique_t70_all/` and `data/paper_release/finding2/coverage/global_unique_t70/`. The third subdirectory, `data/paper_release/finding2/coverage/pooled_unique_t70/`, is created by `build_pooled_unique_criteria.py` on first run of stage 5 and is not required for the minimal verification route.
+
+### 6a. Finding 3 matched-pair artifact
+
+```bash
+./code/bin/06a_run_finding3_pair_pipeline
+```
+
+This validates the shipped staged pair artifact. The exact upstream pair-consolidation builder is not part of the vendored minimal closure.
+
+### 6b. Finding 3 generality and rewrite pipeline
+
+The first-pass judge can be rerun directly:
+
+```bash
+LAB_OPENROUTER_KEY=... ./code/bin/06b_run_finding3_generality_pipeline --run-round1
+```
+
+The final shipped cascade rewrite remains a staged derived artifact in this anonymous package. The exact upstream cascade-consolidation builder is not part of the minimal vendored closure, so the wrapper validates the released final artifact rather than pretending to rebuild it.
 
 ### 7. Rebuild validation summaries
 
@@ -116,7 +117,7 @@ The shipped tree contains the two coverage subdirectories the paper-facing analy
 
 Two release-local files are treated as authoritative staged derived artifacts.
 
-- `data/paper_release/finding1/criterion_pairs/finding1_confirmed_pairs.json`
+- `data/paper_release/finding3/criterion_pairs/finding1_confirmed_pairs.json`
 - `data/paper_release/rubrics/rewrite/human_rubric_cascade_rewritten.jsonl`
 
 The release package still contains enough data to verify all paper-facing headline numbers against those artifacts. The machine-checkable route is the validation script, not an unavailable hidden builder.

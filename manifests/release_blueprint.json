@@ -5,15 +5,15 @@
     "data/paper_release": "Paper-facing released data, staged inputs, and appendix-support outputs.",
     "data/canonical_full": "Full canonical rerun results copied into the release package.",
     "docs": "Anonymous release entrypoint and reproduction documentation.",
-    "manifests": "Machine-readable inventory, provenance, counts, hashes, and validation outputs."
+    "manifests": "Machine-readable inventory, provenance, counts, hashes, and validation outputs.",
+    "data/reviewer_sample": "Compact inspectability sample with the same paper_release finding layout as the full dataset."
   },
   "paper_release_groups": {
     "inputs": "Benchmark cases and fixed sample lists.",
     "rubrics": "Original human rubric, AI rubrics, and cascade rewrite artifacts.",
-    "finding1": "Matched-pair artifacts and pairwise release outputs.",
-    "finding2": "Generality-check and rewrite artifacts plus rescoring trees.",
-    "finding3": "Coverage summaries, top-100 direct-check outputs, and same-branch normative-tendency artifacts.",
-    "appendix_d1": "Cross-judge generality validation outputs.",
+    "finding1": "Rubric-as-response capture artifacts and smaller-model baseline response scoring outputs.",
+    "finding2": "Coverage summaries, top-100 direct-check outputs, and same-branch normative-tendency artifacts.",
+    "finding3": "Matched-pair artifacts, generality-check validation outputs, rewrite artifacts, and rescoring trees.",
     "embeddings": "Embedding text caches needed for paper-facing coverage artifacts."
   }
 }

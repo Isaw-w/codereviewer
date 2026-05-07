@@ -13,8 +13,8 @@ confirmed as unique if it appears in the human_only list for a given
 
 Rubrics:  release_staging/data/paper_release/rubrics/original/human_rubric_500cases.jsonl
           release_staging/data/paper_release/rubrics/ai_rubrics/{model}.jsonl
-Residuals: release_staging/data/paper_release/finding3/direct_check/residuals_top100.jsonl
-Output:    release_staging/data/paper_release/finding3/direct_check/raw_llm/{rubric_model}/{judge_slug}/results.jsonl
+Residuals: release_staging/data/paper_release/finding2/direct_check/residuals_top100.jsonl
+Output:    release_staging/data/paper_release/finding2/direct_check/raw_llm/{rubric_model}/{judge_slug}/results.jsonl
 
 Usage:
     python3 run_find_only_dual_method.py --ak $OPENROUTER_API_KEY
@@ -49,11 +49,11 @@ def resolve_path(raw: str) -> Path:
     return repo_candidate
 
 
-FIND3_DIR = resolve_path("data/paper_release/finding3/direct_check")
-RESIDUALS_PATH = FIND3_DIR / "residuals_top100.jsonl"
+FIND2_DIR = resolve_path("data/paper_release/finding2/direct_check")
+RESIDUALS_PATH = FIND2_DIR / "residuals_top100.jsonl"
 HUMAN_RUBRIC_PATH = resolve_path("data/paper_release/rubrics/original/human_rubric_500cases.jsonl")
 AI_RUBRIC_DIR = resolve_path("data/paper_release/rubrics/ai_rubrics")
-OUT_BASE = FIND3_DIR / "raw_llm"
+OUT_BASE = FIND2_DIR / "raw_llm"
 
 RUBRIC_MODELS = {
     "gpt54":        "gpt54.jsonl",
