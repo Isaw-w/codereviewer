@@ -16,7 +16,7 @@ export HF_DATASET_REPO=forreview43/ai-vs-human-rubric-companion-data
 ./code/bin/00_fetch_data
 ```
 
-The fetch wrapper writes to `./data/` and refuses to overwrite if `./data/` is already populated; pass `--force` to re-fetch. After this step, `data/paper_release/` and `data/canonical_full/` should exist as siblings of `code/`.
+The fetch wrapper writes to `./data/` and refuses to overwrite if `./data/` is already populated; pass `--force` to re-fetch. By default, it pins `HF_REVISION` to `b15c8ef06d9ab40af2cfc58af15f348584a1ce73`, the verified dataset commit containing the complete Finding 3 release data. Set `HF_REVISION=main` only if you intentionally want the latest dataset state. After this step, `data/paper_release/` and `data/canonical_full/` should exist as siblings of `code/`.
 
 ## Minimal verification route
 
