@@ -28,7 +28,7 @@ This repository holds the runnable code, documentation, and machine-readable man
    ./code/bin/00_fetch_data
    ```
 
-   `HF_DATASET_REPO` is the dataset repo id printed in the paper supplementary link. By default, the fetch script pins `HF_REVISION` to `b15c8ef06d9ab40af2cfc58af15f348584a1ce73`, the verified dataset commit that includes the complete Finding 3 release directories. Set `HF_REVISION=main` only if you intentionally want the latest dataset state. The `huggingface-cli` does not require login for a public anonymous dataset.
+   `HF_DATASET_REPO` is the dataset repo id printed in the paper supplementary link. By default, the fetch script pins `HF_REVISION` to `c165536f6b4393df4d71e3897bc5f1fb23f6e4b5`, the verified dataset commit that includes the complete Finding 2 and Finding 3 paper-release directories. Set `HF_REVISION=main` only if you intentionally want the latest dataset state. The `huggingface-cli` does not require login for a public anonymous dataset.
 
 3. Verify the headline numbers without any new API calls.
 

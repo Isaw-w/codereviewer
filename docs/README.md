@@ -29,7 +29,7 @@ export HF_DATASET_REPO=forreview43/ai-vs-human-rubric-companion-data
 ./code/bin/00_fetch_data
 ```
 
-The fetch wrapper defaults to the verified dataset commit `b15c8ef06d9ab40af2cfc58af15f348584a1ce73`, which includes the complete Finding 3 `criterion_pairs`, `cascade_rescoring`, and `generality_validation` directories. You can override this with `HF_REVISION=main` if you want the latest dataset state instead of the pinned review snapshot.
+The fetch wrapper defaults to the verified dataset commit `c165536f6b4393df4d71e3897bc5f1fb23f6e4b5`, which includes the complete Finding 2 `coverage`, `direct_check`, `normative_dimension_labels`, and `normative_tendencies` directories, plus the complete Finding 3 `criterion_pairs`, `cascade_rescoring`, and `generality_validation` directories. You can override this with `HF_REVISION=main` if you want the latest dataset state instead of the pinned review snapshot.
 
 Minimal verification, with no new API calls:
 

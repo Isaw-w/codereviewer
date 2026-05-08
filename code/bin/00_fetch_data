@@ -14,7 +14,7 @@ DATA_DIR="$RELEASE_ROOT/data"
 # Optional env var:
 #   HF_REVISION       branch/tag/commit
 
-DEFAULT_HF_REVISION="b15c8ef06d9ab40af2cfc58af15f348584a1ce73"
+DEFAULT_HF_REVISION="c165536f6b4393df4d71e3897bc5f1fb23f6e4b5"
 
 : "${HF_DATASET_REPO:?Set HF_DATASET_REPO to the anonymous Hugging Face dataset repo id}"
 HF_REVISION="${HF_REVISION:-$DEFAULT_HF_REVISION}"
